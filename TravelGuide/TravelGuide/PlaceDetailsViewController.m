@@ -20,6 +20,14 @@
 @synthesize  categoryLabel=_categoryLabel;
 @synthesize addressLabel=_addressLabel;
 @synthesize  countryLabel=_countryLabel;
+@synthesize name;
+@synthesize distance;
+@synthesize category;
+@synthesize address;
+@synthesize country;
+@synthesize lat;
+@synthesize lng;
+@synthesize placeId;
 
 @synthesize mapView=_mapView;
 
@@ -36,23 +44,31 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    name=[self.placeDetailModel objectAtIndex:0];
+    distance=[self.placeDetailModel objectAtIndex:1];
+    category=[self.placeDetailModel objectAtIndex:2];
+    address=[self.placeDetailModel objectAtIndex:3];
+    country=[self.placeDetailModel objectAtIndex:4];
+    lat=[self.placeDetailModel objectAtIndex:5];
+    lng=[self.placeDetailModel objectAtIndex:6];
+    placeId=[self.placeDetailModel objectAtIndex:7];
     
-    self.nameLabel.text = [self.placeDetailModel objectAtIndex:0];
-    self.distanceLabel.text = [self.placeDetailModel objectAtIndex:1];
-    self.categoryLabel.text = [self.placeDetailModel objectAtIndex:2];
-     self.addressLabel.text = [self.placeDetailModel objectAtIndex:3];
-     self.countryLabel.text = [self.placeDetailModel objectAtIndex:4];
+    self.nameLabel.text = name;
+    self.distanceLabel.text = distance;
+    self.categoryLabel.text = category;
+    self.addressLabel.text = address;
+    self.countryLabel.text = country;
     
     CLLocationCoordinate2D centerCoordinate;
-    centerCoordinate.latitude = [[self.placeDetailModel objectAtIndex:5] doubleValue];
-    centerCoordinate.longitude = [[self.placeDetailModel objectAtIndex:6] doubleValue];
+    centerCoordinate.latitude = [lat doubleValue];
+    centerCoordinate.longitude = [lng doubleValue];
     
     MKCoordinateSpan span = MKCoordinateSpanMake(0.1, 0.1);
     MKCoordinateRegion region = {centerCoordinate, span};
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:centerCoordinate];
-     [annotation setTitle:[self.placeDetailModel objectAtIndex:0] ];
+     [annotation setTitle: name];
     
     [self.mapView setRegion:region];
     [self.mapView addAnnotation:annotation];
@@ -75,4 +91,45 @@
 }
 */
 
+- (IBAction)btnAddToFavouritesClick:(id)sender {
+    NSMutableArray *favouritesArray=[[NSMutableArray alloc] init];
+    
+    //read user data:
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
+    
+    bool exists=false;
+    for (NSMutableDictionary *dict in favouritesArray) {
+        if(dict[@"placeId"] == placeId){
+            exists=true;
+            break;
+        }
+    }
+    if(!exists)
+    {
+        NSMutableDictionary *dictionary=[NSMutableDictionary dictionary];
+        dictionary[@"name"]= name;
+        dictionary[@"distance"]= distance;
+        dictionary[@"category"]= category;
+        dictionary[@"address"]= address;
+        dictionary[@"country"]= country;
+        dictionary[@"lat"]= lat;
+        dictionary[@"lng"]= lng;
+        dictionary[@"placeId"]= placeId;
+        
+        [favouritesArray addObject: dictionary];
+        
+        //save user data
+        [prefs setObject:favouritesArray forKey:@"favouritesArray"];
+        
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Place is added to favourites!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"This place is already in your favourites list!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+}
 @end

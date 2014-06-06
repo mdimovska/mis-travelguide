@@ -89,20 +89,75 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ShowPlaceDetails"])
+    {
+        PlaceDetailsViewController *detailViewController =
+        [segue destinationViewController];
+        
+        NSIndexPath *myIndexPath = [self.tableView
+                                    indexPathForSelectedRow];
+        
+        NSDictionary *result =[self.responseArray objectAtIndex: [myIndexPath row]];
+        
+        /*
+         name,
+         distance,
+         categoryName,
+         address,
+         country,
+         lat,
+         lng
+         */
+        NSString *name=@"";
+        NSString *distance=@"";
+        NSString *category=@"";
+        NSString *address=@"";
+        NSString *country=@"";
+        NSString *lat=@"";
+        NSString *lng=@"";
+        NSString *placeId=@"";
+        
+        if( result[@"venue"][@"name"] != nil)
+            name= result[@"venue"][@"name"];
+        if( [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]] !=nil)
+            distance= [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]];
+        if(  [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"] != nil)
+            category=  [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"];
+        if(result[@"venue"][@"location"][@"address"] != nil)
+            address=result[@"venue"][@"location"][@"address"];
+        if( [NSString stringWithFormat:@" %@", result[@"venue"][@"location"][@"city"]] != nil)
+            country=  [NSString stringWithFormat:@" %@", result[@"venue"][@"location"][@"city"]];
+        if( result[@"venue"][@"location"][@"lat"] != nil)
+            lat=  result[@"venue"][@"location"][@"lat"];
+        if( result[@"venue"][@"location"][@"lng"] != nil)
+            lng= result[@"venue"][@"location"][@"lng"];
+        if( result[@"venue"][@"id"] != nil)
+            placeId= result[@"venue"][@"id"];
+        
+        detailViewController.placeDetailModel = [[NSArray alloc]
+                                                 initWithObjects:
+                                                 name,
+                                                 distance,
+                                                 category,
+                                                 address,
+                                                 country,
+                                                 lat,
+                                                 lng,
+                                                 placeId,
+                                                 nil];
+        
+    }
+
 }
-*/
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //mesto ovaj, druga niza treba
-    // Return the number of rows in the section.
     return [self.responseArray count];
 }
 
@@ -132,63 +187,10 @@
     return cell;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"ShowPlaceDetails"])
-    {
-        PlaceDetailsViewController *detailViewController =
-        [segue destinationViewController];
-        
-        NSIndexPath *myIndexPath = [self.tableView
-                                    indexPathForSelectedRow];
-        
-        NSDictionary *result =[self.responseArray objectAtIndex: [myIndexPath row]];
-        
-        /*
-         name,
-         distance,
-         categoryName,
-         address,
-         country,
-         lat,
-         lng
-        */
-        NSString *name=@"";
-        NSString *distance=@"";
-        NSString *category=@"";
-        NSString *address=@"";
-        NSString *country=@"";
-        NSString *lat=@"";
-        NSString *lng=@"";
-        if( result[@"venue"][@"name"] != nil)
-            name= result[@"venue"][@"name"];
-        if( [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]] !=nil)
-            distance= [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]];
-        if(  [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"] != nil)
-            category=  [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"];
-        if(result[@"venue"][@"location"][@"address"] != nil)
-            address=result[@"venue"][@"location"][@"address"];
-        if( [NSString stringWithFormat:@" %@", result[@"venue"][@"location"][@"city"]] != nil)
-            country=  [NSString stringWithFormat:@" %@", result[@"venue"][@"location"][@"city"]];
-        if( result[@"venue"][@"location"][@"lat"] != nil)
-            lat=  result[@"venue"][@"location"][@"lat"];
-        if( result[@"venue"][@"location"][@"lng"] != nil)
-            lng= result[@"venue"][@"location"][@"lng"];
-        
-        detailViewController.placeDetailModel = [[NSArray alloc]
-                                                    initWithObjects:
-                                                name,
-                                                distance,
-                                                   category,
-                                                     address,
-                                                  country,
-                                                lat,
-                                                lng,
-                                                    nil];
-         
-    }
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillAppear:animated];
 }
-
 
 
 @end

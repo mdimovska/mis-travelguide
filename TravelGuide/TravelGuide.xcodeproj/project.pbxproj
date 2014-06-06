@@ -41,6 +41,7 @@
 		4E202871193B53230099614F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E202850193B53230099614F /* UIKit.framework */; };
 		4E202879193B53230099614F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E202877193B53230099614F /* InfoPlist.strings */; };
 		4E20287B193B53230099614F /* TravelGuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E20287A193B53230099614F /* TravelGuideTests.m */; };
+		4E728FF61941BFF80016AD8C /* FavouritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E728FF51941BFF80016AD8C /* FavouritesTableViewController.m */; };
 		4EB1D56B1940EE8400CA80FA /* OSBlurredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5631940EE8400CA80FA /* OSBlurredView.m */; };
 		4EB1D56C1940EE8400CA80FA /* OSBlurSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5661940EE8400CA80FA /* OSBlurSlideMenuController.m */; };
 		4EB1D56D1940EE8400CA80FA /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5681940EE8400CA80FA /* UIImage+BoxBlur.m */; };
@@ -106,6 +107,8 @@
 		4E202876193B53230099614F /* TravelGuideTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TravelGuideTests-Info.plist"; sourceTree = "<group>"; };
 		4E202878193B53230099614F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4E20287A193B53230099614F /* TravelGuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TravelGuideTests.m; sourceTree = "<group>"; };
+		4E728FF41941BFF80016AD8C /* FavouritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesTableViewController.h; sourceTree = "<group>"; };
+		4E728FF51941BFF80016AD8C /* FavouritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesTableViewController.m; sourceTree = "<group>"; };
 		4EB1D5621940EE8400CA80FA /* OSBlurredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSBlurredView.h; sourceTree = "<group>"; };
 		4EB1D5631940EE8400CA80FA /* OSBlurredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSBlurredView.m; sourceTree = "<group>"; };
 		4EB1D5641940EE8400CA80FA /* OSBlurSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSBlurSlideMenu.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				4E1C4E59193F9DD800AC82B1 /* PlacesTableViewCell.m */,
 				4E1C4E5B193FCC0300AC82B1 /* PlaceDetailsViewController.h */,
 				4E1C4E5C193FCC0300AC82B1 /* PlaceDetailsViewController.m */,
+				4E728FF41941BFF80016AD8C /* FavouritesTableViewController.h */,
+				4E728FF51941BFF80016AD8C /* FavouritesTableViewController.m */,
 			);
 			path = TravelGuide;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				4EB1D56D1940EE8400CA80FA /* UIImage+BoxBlur.m in Sources */,
 				4EB1D56E1940EE8400CA80FA /* UIImage+StackBlur.m in Sources */,
 				4EB1D56B1940EE8400CA80FA /* OSBlurredView.m in Sources */,
+				4E728FF61941BFF80016AD8C /* FavouritesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

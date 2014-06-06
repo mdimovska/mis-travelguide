@@ -25,6 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+ 
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.categoryNames=[[NSArray alloc]initWithObjects:@"Arts and entertainment",@"Food and drink",@"Nightlife",@"Outdoors and recreation",@"Shop and services", nil];
@@ -187,5 +189,17 @@
     }
 
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+
 
 @end
