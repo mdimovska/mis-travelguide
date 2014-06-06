@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CF66F524-F2C6-44A9-9818-B6C8F39EC402</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TravelGuide</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>63EAC830-EA50-41DE-A953-7B21EA84A6C4</key>
+		<string>https://github.com/mdimovska/mis-travelguide.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TravelGuide/TravelGuide.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>63EAC830-EA50-41DE-A953-7B21EA84A6C4</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mdimovska/mis-travelguide.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>63EAC830-EA50-41DE-A953-7B21EA84A6C4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>63EAC830-EA50-41DE-A953-7B21EA84A6C4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mis-travelguide</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -45,6 +45,11 @@
 		4EB1D56C1940EE8400CA80FA /* OSBlurSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5661940EE8400CA80FA /* OSBlurSlideMenuController.m */; };
 		4EB1D56D1940EE8400CA80FA /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5681940EE8400CA80FA /* UIImage+BoxBlur.m */; };
 		4EB1D56E1940EE8400CA80FA /* UIImage+StackBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D56A1940EE8400CA80FA /* UIImage+StackBlur.m */; };
+		4EB1D5711941134200CA80FA /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5701941134200CA80FA /* MenuViewController.m */; };
+		4EB1D574194113DE00CA80FA /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D573194113DE00CA80FA /* ContentViewController.m */; };
+		4EB1D57619412CF900CA80FA /* art_and_entertainment_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1D57519412CF900CA80FA /* art_and_entertainment_icon.png */; };
+		4EB1D578194133EB00CA80FA /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1D577194133EB00CA80FA /* star_icon.png */; };
+		4EB1D57A1941347400CA80FA /* share_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1D5791941347400CA80FA /* share_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +115,13 @@
 		4EB1D5681940EE8400CA80FA /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
 		4EB1D5691940EE8400CA80FA /* UIImage+StackBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+StackBlur.h"; sourceTree = "<group>"; };
 		4EB1D56A1940EE8400CA80FA /* UIImage+StackBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+StackBlur.m"; sourceTree = "<group>"; };
+		4EB1D56F1941134200CA80FA /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		4EB1D5701941134200CA80FA /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		4EB1D572194113DE00CA80FA /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		4EB1D573194113DE00CA80FA /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		4EB1D57519412CF900CA80FA /* art_and_entertainment_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = art_and_entertainment_icon.png; sourceTree = "<group>"; };
+		4EB1D577194133EB00CA80FA /* star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_icon.png; sourceTree = "<group>"; };
+		4EB1D5791941347400CA80FA /* share_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +181,10 @@
 		4E202852193B53230099614F /* TravelGuide */ = {
 			isa = PBXGroup;
 			children = (
+				4EB1D572194113DE00CA80FA /* ContentViewController.h */,
+				4EB1D573194113DE00CA80FA /* ContentViewController.m */,
+				4EB1D56F1941134200CA80FA /* MenuViewController.h */,
+				4EB1D5701941134200CA80FA /* MenuViewController.m */,
 				4EB1D5611940EE8400CA80FA /* OSBlurSlideMenu */,
 				4E20285B193B53230099614F /* AppDelegate.h */,
 				4E20285C193B53230099614F /* AppDelegate.m */,
@@ -193,6 +209,9 @@
 		4E202853193B53230099614F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4EB1D5791941347400CA80FA /* share_icon.png */,
+				4EB1D577194133EB00CA80FA /* star_icon.png */,
+				4EB1D57519412CF900CA80FA /* art_and_entertainment_icon.png */,
 				4E1C4E4E193F8F0D00AC82B1 /* shops1.jpg */,
 				4E1C4E4F193F8F0D00AC82B1 /* shops2.gif */,
 				4E1C4E50193F8F0D00AC82B1 /* shops3.jpg */,
@@ -328,16 +347,19 @@
 			files = (
 				4E1C4E4B193F8EAC00AC82B1 /* outdoors1.jpg in Resources */,
 				4E1C4E3B193F8C6C00AC82B1 /* nightlife3.jpg in Resources */,
+				4EB1D578194133EB00CA80FA /* star_icon.png in Resources */,
 				4E1C4E41193F8E5900AC82B1 /* art3.jpg in Resources */,
 				4E1C4E39193F8C6C00AC82B1 /* nightlife1.jpg in Resources */,
 				4E202863193B53230099614F /* Main_iPad.storyboard in Resources */,
 				4E1C4E52193F8F0D00AC82B1 /* shops2.gif in Resources */,
 				4E202868193B53230099614F /* Images.xcassets in Resources */,
+				4EB1D57619412CF900CA80FA /* art_and_entertainment_icon.png in Resources */,
 				4E1C4E53193F8F0D00AC82B1 /* shops3.jpg in Resources */,
 				4E1C4E40193F8E5900AC82B1 /* art2.jpg in Resources */,
 				4E1C4E46193F8E8A00AC82B1 /* food2.jpg in Resources */,
 				4E1C4E4C193F8EAC00AC82B1 /* outdoors2.jpeg in Resources */,
 				4E1C4E45193F8E8A00AC82B1 /* food1.jpg in Resources */,
+				4EB1D57A1941347400CA80FA /* share_icon.png in Resources */,
 				4E1C4E3A193F8C6C00AC82B1 /* nightlife2.jpg in Resources */,
 				4E202860193B53230099614F /* Main_iPhone.storyboard in Resources */,
 				4E1C4E51193F8F0D00AC82B1 /* shops1.jpg in Resources */,
@@ -367,9 +389,11 @@
 				4E202866193B53230099614F /* ViewController.m in Sources */,
 				4EB1D56C1940EE8400CA80FA /* OSBlurSlideMenuController.m in Sources */,
 				4E1C4E5A193F9DD800AC82B1 /* PlacesTableViewCell.m in Sources */,
+				4EB1D574194113DE00CA80FA /* ContentViewController.m in Sources */,
 				4E1C4E56193F916500AC82B1 /* CategoryDetailsViewController.m in Sources */,
 				4E20285D193B53230099614F /* AppDelegate.m in Sources */,
 				4E202859193B53230099614F /* main.m in Sources */,
+				4EB1D5711941134200CA80FA /* MenuViewController.m in Sources */,
 				4E1C4E35193F859500AC82B1 /* CategoryTableViewCell.m in Sources */,
 				4EB1D56D1940EE8400CA80FA /* UIImage+BoxBlur.m in Sources */,
 				4EB1D56E1940EE8400CA80FA /* UIImage+StackBlur.m in Sources */,

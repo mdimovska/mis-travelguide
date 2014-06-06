@@ -80,25 +80,26 @@
     return cell;
 }
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowCategoryDetails"])
     {
         
-        CategoryDetailsViewController *detailViewController =
-        [segue destinationViewController];
+        CategoryDetailsViewController *detailViewController =  [segue destinationViewController] ;
     
         
       //  UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
        // CategoryDetailsViewController *detailViewController = [navController topViewController];
         
-        //UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
+   //   UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
    //   CategoryDetailsViewController *detailViewController = (CategoryDetailsViewController *)[navController topViewController];
 
         
+     
         
+   //   CategoryDetailsViewController *detailViewController = (CategoryDetailsViewController *)[[segue destinationViewController] topViewController];
         
-    //    CategoryDetailsViewController *detailViewController = (CategoryDetailsViewController *)[[segue destinationViewController] topViewController];
         NSIndexPath *myIndexPath = [self.tableView
                                     indexPathForSelectedRow];
         NSString *lat;
@@ -112,8 +113,8 @@
         }
         
         detailViewController.categoryDetailModel = [[NSArray alloc]
-                                               initWithObjects: [self.categoryIDs
-                                                                 objectAtIndex:[myIndexPath row]],
+                                               initWithObjects:
+                                                    [self.categoryIDs objectAtIndex:[myIndexPath row]],
                                                [self.categoryNames objectAtIndex:[myIndexPath row]],
                                                     [self.categoryImages objectAtIndex:[myIndexPath row]],
                                                    lat,

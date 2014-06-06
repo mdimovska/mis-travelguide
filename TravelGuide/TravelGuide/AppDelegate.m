@@ -7,11 +7,30 @@
 //
 
 #import "AppDelegate.h"
+#import "ContentViewController.h"
+#import "MenuViewController.h"
+#import "OSBlurSlideMenu.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Override point for customization after application launch.
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    
+    ContentViewController *contentScreen = [mainStoryBoard instantiateViewControllerWithIdentifier:@"ContentScreen"];
+    ContentViewController *menuScreen = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MenuScreen"];
+    OSBlurSlideMenuController *slideController = [[OSBlurSlideMenuController alloc] initWithMenuViewController:menuScreen andContentViewController:contentScreen];
+    
+    
+    UINavigationController *navigationController=[[UINavigationController alloc] initWithRootViewController:slideController];
+    
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
     // Override point for customization after application launch.
     return YES;
 }

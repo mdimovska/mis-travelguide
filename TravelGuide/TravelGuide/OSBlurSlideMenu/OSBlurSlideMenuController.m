@@ -65,8 +65,7 @@
 		self.panGestureEnabled = YES;
         self.slideDirection = OSBlurSlideMenuControllerSlideFromLeftToRight;
 		_contentViewWidthWhenMenuIsOpen = -1;
-		self.menuWidth = 276;
-	}
+		self.menuWidth = 276;	}
 	
 	return self;
 }
