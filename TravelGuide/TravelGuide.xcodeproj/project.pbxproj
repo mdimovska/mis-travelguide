@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1924DB1941E6D200588C58 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1924DA1941E6D200588C58 /* CoreLocation.framework */; };
 		4E1C4E35193F859500AC82B1 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C4E34193F859500AC82B1 /* CategoryTableViewCell.m */; };
 		4E1C4E39193F8C6C00AC82B1 /* nightlife1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1C4E36193F8C6C00AC82B1 /* nightlife1.jpg */; };
 		4E1C4E3A193F8C6C00AC82B1 /* nightlife2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1C4E37193F8C6C00AC82B1 /* nightlife2.jpg */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E1924DA1941E6D200588C58 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4E1C4E33193F859500AC82B1 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
 		4E1C4E34193F859500AC82B1 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
 		4E1C4E36193F8C6C00AC82B1 /* nightlife1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nightlife1.jpg; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1924DB1941E6D200588C58 /* CoreLocation.framework in Frameworks */,
 				4E20284F193B53230099614F /* CoreGraphics.framework in Frameworks */,
 				4E202851193B53230099614F /* UIKit.framework in Frameworks */,
 				4E20284D193B53230099614F /* Foundation.framework in Frameworks */,
@@ -173,6 +176,7 @@
 		4E20284B193B53230099614F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E1924DA1941E6D200588C58 /* CoreLocation.framework */,
 				4E20284C193B53230099614F /* Foundation.framework */,
 				4E20284E193B53230099614F /* CoreGraphics.framework */,
 				4E202850193B53230099614F /* UIKit.framework */,

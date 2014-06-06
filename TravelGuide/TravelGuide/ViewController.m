@@ -35,8 +35,11 @@
     
     self.categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", nil];
     
-    self.locationManager = [[CLLocationManager alloc] init]; _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest; [_locationManager startUpdatingLocation];
+    self.locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = 100.0f;
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,20 +90,7 @@
 {
     if ([[segue identifier] isEqualToString:@"ShowCategoryDetails"])
     {
-        
         CategoryDetailsViewController *detailViewController =  [segue destinationViewController] ;
-    
-        
-      //  UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
-       // CategoryDetailsViewController *detailViewController = [navController topViewController];
-        
-   //   UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
-   //   CategoryDetailsViewController *detailViewController = (CategoryDetailsViewController *)[navController topViewController];
-
-        
-     
-        
-   //   CategoryDetailsViewController *detailViewController = (CategoryDetailsViewController *)[[segue destinationViewController] topViewController];
         
         NSIndexPath *myIndexPath = [self.tableView
                                     indexPathForSelectedRow];
@@ -117,7 +107,7 @@
         detailViewController.categoryDetailModel = [[NSArray alloc]
                                                initWithObjects:
                                                     [self.categoryIDs objectAtIndex:[myIndexPath row]],
-                                               [self.categoryNames objectAtIndex:[myIndexPath row]],
+                                                    [self.categoryNames objectAtIndex:[myIndexPath row]],
                                                     [self.categoryImages objectAtIndex:[myIndexPath row]],
                                                    lat,
                                                     lng,
@@ -134,38 +124,61 @@
     
     NSString *latitudeString = [NSString stringWithFormat:@"%f",
                                 _location.coordinate.latitude];
-    
     NSLog(@"lat:   %@",latitudeString);
+    
     NSString *longitudeString = [NSString stringWithFormat:@"%f",
                                  _location.coordinate.longitude];
-       NSLog(@"long:   %@",longitudeString);
-    [_locationManager stopUpdatingLocation];
+    NSLog(@"long:   %@",longitudeString);
+    
+   // [_locationManager stopUpdatingLocation];
     
     /*
-    if (_startPoint == nil) {
-        self.startPoint = newLocation;
-        self.distanceFromStart = 0;
-    } else {
-        self.distanceFromStart = [newLocation
-                                  distanceFromLocation:_startPoint];
+    CLLocation *favouriteLocation = [[CLLocation alloc] initWithLatitude: [latitudeString doubleValue] longitude: [longitudeString doubleValue] ];
+    CLLocationDistance distance = [_location distanceFromLocation:favouriteLocation];
+    NSString *distanceString = [NSString stringWithFormat: @"%f", distance];
+    NSLog(distanceString);
+    */
+    
+    NSMutableArray *favouritesArray=[[NSMutableArray alloc] init];
+    
+    //read user data:
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
+    
+    //exists = true if there is a place that is at most 200m far from user location
+    bool exists=false;
+    NSString *nearPlaceName;
+    NSInteger *nearPlaceDistance;
+    for (NSMutableDictionary *dict in favouritesArray) {
+     
+        CLLocation *favouriteLocation = [[CLLocation alloc] initWithLatitude: [dict[@"lat"] doubleValue] longitude: [dict[@"lng"] doubleValue] ];
+        CLLocationDistance distance = [_location distanceFromLocation:favouriteLocation];
+        
+        NSString *distanceString = [NSString stringWithFormat: @"%f", distance];
+        NSLog(distanceString);
+        
+        NSMutableArray *locationsArray=[[NSMutableArray alloc]init];
+        
+        if([distanceString doubleValue]<=200){
+            exists=true;
+            NSLog(@"dist:   %@",distanceString);
+            NSLog(@"name:   %@",dict[@"name"]);
+            nearPlaceName= dict[@"name"];
+            nearPlaceDistance=[distanceString intValue];
+            break;
+        }
     }
-    NSString *distanceString = [NSString stringWithFormat:@"%gm", _distanceFromStart];
-    _distanceTraveledLabel.text = distanceString;
-     */
+    if(exists){
+        //there is a favourite place near the user
+        //local notification
+        NSString *message = [NSString stringWithFormat: @"Your favourite place %@ is %d m from here. Why don't you visit it?",nearPlaceName, nearPlaceDistance];
+        NSLog(message);
+    }
+
+    
 }
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    /*
-    NSString *errorType = (error.code == kCLErrorDenied) ?
-    @"Access Denied" : @"Unknown Error";
-    UIAlertView *alert1 = [[UIAlertView alloc]
-                          initWithTitle:@"Error getting Location"
-                          message:errorType
-                          delegate:nil
-                          cancelButtonTitle:@"Okay"
-                          otherButtonTitles:nil];
-    [alert1 show];
-    */
     _location=nil;
     switch([error code])
     {

@@ -102,7 +102,6 @@
         // the item should be deleted in NSUserDefaults too!
           [favouritesArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
          NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:favouritesArray forKey:@"favouritesArray"];
     }
