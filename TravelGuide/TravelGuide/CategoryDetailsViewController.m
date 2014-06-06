@@ -49,9 +49,17 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:url]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+  //  self.navigationController.view.tintColor=[UIColor blackColor];
+    /*
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
+    backButton.title = @"";
+    backButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.backBarButtonItem = backButton;
+    
+ //   [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];}
+*/
 }
-
-
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
     [self.responseData setLength:0];
@@ -112,7 +120,11 @@
          address,
          country,
          lat,
-         lng
+         lng,
+         id,
+         likes,
+         rating,
+         
          */
         NSString *name=@"";
         NSString *distance=@"";
@@ -122,6 +134,9 @@
         NSString *lat=@"";
         NSString *lng=@"";
         NSString *placeId=@"";
+        NSString *likes=@"0";
+        NSString *rating=@"";
+         NSString *tips=@"";
         
         if( result[@"venue"][@"name"] != nil)
             name= result[@"venue"][@"name"];
@@ -141,6 +156,13 @@
             lng= result[@"venue"][@"location"][@"lng"];
         if( result[@"venue"][@"id"] != nil)
             placeId= result[@"venue"][@"id"];
+        if(  result[@"venue"][@"likes"][@"count"] != nil)
+            likes=  [result[@"venue"][@"likes"][@"count"] stringValue];
+        if(  result[@"venue"][@"rating"] != nil)
+            rating=  [result[@"venue"][@"rating"] stringValue];
+        if(  [result[@"tips"]objectAtIndex: 0][@"text"] != nil)
+            tips=  [result[@"tips"]objectAtIndex: 0][@"text"];
+        
         
         detailViewController.placeDetailModel = [[NSArray alloc]
                                                  initWithObjects:
@@ -152,6 +174,9 @@
                                                  lat,
                                                  lng,
                                                  placeId,
+                                                 likes,
+                                                 rating,
+                                                 tips,
                                                  nil];
         
     }

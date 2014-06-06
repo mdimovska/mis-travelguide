@@ -37,7 +37,8 @@
         application.applicationIconBadgeNumber = 0;
     }
     
-    
+     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+      navigationController.navigationBar.topItem.title = @"";
     // Override point for customization after application launch.
     return YES;
 }

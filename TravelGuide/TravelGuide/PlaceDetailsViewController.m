@@ -15,11 +15,12 @@
 @implementation PlaceDetailsViewController
 
 @synthesize placeDetailModel=_placeDetailModel;
-@synthesize nameLabel=_nameLabel;
-@synthesize distanceLabel=_distanceLabel;
-@synthesize  categoryLabel=_categoryLabel;
-@synthesize addressLabel=_addressLabel;
-@synthesize  countryLabel=_countryLabel;
+@synthesize nameLabel;
+@synthesize distanceLabel;
+@synthesize  categoryLabel;
+@synthesize addressLabel;
+@synthesize  countryLabel;
+@synthesize tipsLabel;
 @synthesize name;
 @synthesize distance;
 @synthesize category;
@@ -28,6 +29,10 @@
 @synthesize lat;
 @synthesize lng;
 @synthesize placeId;
+@synthesize likes;
+@synthesize rating;
+@synthesize tips;
+@synthesize tipsView;
 
 @synthesize mapView=_mapView;
 
@@ -52,12 +57,40 @@
     lat=[self.placeDetailModel objectAtIndex:5];
     lng=[self.placeDetailModel objectAtIndex:6];
     placeId=[self.placeDetailModel objectAtIndex:7];
+    likes=[self.placeDetailModel objectAtIndex:8];
+    rating=[self.placeDetailModel objectAtIndex:9];
+     tips=[self.placeDetailModel objectAtIndex:10];
     
-    self.nameLabel.text = name;
-    self.distanceLabel.text = distance;
-    self.categoryLabel.text = category;
-    self.addressLabel.text = address;
-    self.countryLabel.text = country;
+    nameLabel.text = name;
+    distanceLabel.text = distance;
+    categoryLabel.text = category;
+    //self.addressLabel.text = address;
+   // self.countryLabel.text = country;
+    addressLabel.text = rating;
+    countryLabel.text = likes;
+    tipsLabel.text=tips;
+    
+    //transparent navigation bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.view.tintColor=[UIColor whiteColor];
+    self.navigationController.navigationBar.topItem.title = @"";
+    
+    // [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
+    
+    /*
+    self.navigationItem.backBarButtonItem.tintColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
+    backButton.title = @"";
+    backButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.backBarButtonItem = backButton;
+    
+    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
+    */
     
     CLLocationCoordinate2D centerCoordinate;
     centerCoordinate.latitude = [lat doubleValue];
@@ -68,7 +101,9 @@
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:centerCoordinate];
-     [annotation setTitle: name];
+     [annotation setTitle: [NSString stringWithFormat:@"%@",address]];
+    [annotation setSubtitle:[NSString stringWithFormat:@"%@",country]];
+
     
     [self.mapView setRegion:region];
     [self.mapView addAnnotation:annotation];
@@ -80,6 +115,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 /*
 #pragma mark - Navigation
 
@@ -90,6 +127,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)btnShowTipsClick:(id)sender {
+    if(![tips isEqualToString:@""]){
+    [UIView transitionWithView:tipsView
+                  duration:0.4
+                   options:UIViewAnimationOptionTransitionCrossDissolve
+                animations:NULL
+                completion:NULL];
+    tipsView.hidden = !tipsView.hidden;
+    }
+}
 
 - (IBAction)btnAddToFavouritesClick:(id)sender {
     NSMutableArray *favouritesArray=[[NSMutableArray alloc] init];
@@ -116,6 +163,9 @@
         dictionary[@"lat"]= lat;
         dictionary[@"lng"]= lng;
         dictionary[@"placeId"]= placeId;
+        dictionary[@"likes"]= likes;
+        dictionary[@"rating"]= rating;
+        dictionary[@"tips"]= tips;
         
         [favouritesArray addObject: dictionary];
         

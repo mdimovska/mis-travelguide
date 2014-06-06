@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 
 @interface PlaceDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *tipsView;
 - (IBAction)btnAddToFavouritesClick:(id)sender;
 
 @property (strong, nonatomic) NSArray *placeDetailModel;
@@ -19,15 +20,19 @@
 @property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
 
-@property (strong, atomic) NSString *name;
-@property (strong, atomic) NSString *distance;
-@property (strong, atomic) NSString *category;
-@property (strong, atomic) NSString *address;
-@property (strong, atomic) NSString *country;
-@property (strong, atomic) NSString *lat;
-@property (strong, atomic) NSString *lng;
-@property (strong, atomic) NSString *placeId;
+@property (weak, atomic) NSString *name;
+@property (weak, atomic) NSString *distance;
+@property (weak, atomic) NSString *category;
+@property (weak, atomic) NSString *address;
+@property (weak, atomic) NSString *country;
+@property (weak, atomic) NSString *lat;
+@property (weak, atomic) NSString *lng;
+@property (weak, atomic) NSString *placeId;
+@property (weak, atomic) NSString *likes;
+@property (weak, atomic) NSString *rating;
+@property (weak, atomic) NSString *tips;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 //@property (strong, nonatomic) IBOutlet UIImageView *imageView;
