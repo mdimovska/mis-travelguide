@@ -129,8 +129,10 @@
             distance= [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]];
         if(  [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"] != nil)
             category=  [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"];
+      if(result[@"venue"][@"location"][@"address"] != NULL)
         if(result[@"venue"][@"location"][@"address"] != nil)
             address=result[@"venue"][@"location"][@"address"];
+       if( result[@"venue"][@"location"][@"city"] != NULL)
         if( [NSString stringWithFormat:@" %@", result[@"venue"][@"location"][@"city"]] != nil)
             country=  [NSString stringWithFormat:@" %@", result[@"venue"][@"location"][@"city"]];
         if( result[@"venue"][@"location"][@"lat"] != nil)

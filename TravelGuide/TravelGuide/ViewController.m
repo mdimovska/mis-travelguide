@@ -132,12 +132,6 @@
     
    // [_locationManager stopUpdatingLocation];
     
-    /*
-    CLLocation *favouriteLocation = [[CLLocation alloc] initWithLatitude: [latitudeString doubleValue] longitude: [longitudeString doubleValue] ];
-    CLLocationDistance distance = [_location distanceFromLocation:favouriteLocation];
-    NSString *distanceString = [NSString stringWithFormat: @"%f", distance];
-    NSLog(distanceString);
-    */
     
     NSMutableArray *favouritesArray=[[NSMutableArray alloc] init];
     
@@ -173,6 +167,17 @@
         //local notification
         NSString *message = [NSString stringWithFormat: @"Your favourite place %@ is %d m from here. Why don't you visit it?",nearPlaceName, nearPlaceDistance];
         NSLog(message);
+        
+        NSDate *date = [NSDate date];
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        //show notification after 60s
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10];;
+        localNotification.alertBody = message;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+      //   localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        localNotification.applicationIconBadgeNumber = 0;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
     }
 
     

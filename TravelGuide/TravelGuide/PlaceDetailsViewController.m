@@ -100,7 +100,7 @@
     
     bool exists=false;
     for (NSMutableDictionary *dict in favouritesArray) {
-        if(dict[@"placeId"] == placeId){
+        if([dict[@"placeId"] isEqualToString: placeId]){
             exists=true;
             break;
         }

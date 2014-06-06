@@ -80,7 +80,6 @@
     NSMutableDictionary *result =[self.favouritesArray objectAtIndex: [indexPath row]];
     
     cell.placeNameLabel.text = result[@"name"];
-    cell.placeDistanceLabel.text = result[@"distance"];
     cell.placeLocationLabel.text = result[@"category"];
     
     return cell;
