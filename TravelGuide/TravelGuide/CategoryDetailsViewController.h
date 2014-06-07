@@ -12,7 +12,6 @@
 
 @property (strong, nonatomic) NSArray *categoryDetailModel;
 @property (nonatomic, strong) NSMutableData *responseData;
-
 @property (nonatomic, strong) NSArray *responseArray;
 
 @end

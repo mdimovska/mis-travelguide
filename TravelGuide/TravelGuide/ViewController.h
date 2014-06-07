@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSArray *categoryIDs;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *startPoint;
 @property (strong, nonatomic) CLLocation *location;
 
 @end

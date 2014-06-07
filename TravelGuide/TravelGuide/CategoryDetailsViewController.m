@@ -42,7 +42,7 @@
     //formated url with categoryId from the previous page
     NSString *url=   [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/explore?client_id=5V0A4GCWI2BDB5LIA1OEJW4DOH3NVFPUVIVW4CWMCH0ZWZXU&client_secret=02U2I0PBBOOLOLWCPSKER3RVRJZRCNW0CLSZUYUHSKDUGHCV&ll=%@,%@&categoryId=%@&v=20140603", lat,lng,[self.categoryDetailModel objectAtIndex:0]];
     
-     self.responseArray = [[NSArray alloc] init];
+    self.responseArray = [[NSArray alloc] init];
     
     self.responseData = [NSMutableData data];
     

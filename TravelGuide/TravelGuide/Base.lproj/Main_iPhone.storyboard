@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hud-Nt-sSB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="QQo-3g-Dhv">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -213,7 +213,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.043137256056070328" green="0.090196080505847931" blue="0.11764706671237946" alpha="0.58999999999999997" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.043137256056070328" green="0.090196080505847931" blue="0.11764706671237946" alpha="0.80000000000000004" colorSpace="deviceRGB"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ewx-jG-n8e">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
@@ -247,6 +247,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eWz-FN-rDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3645" y="48"/>
+        </scene>
+        <!--Random Location View Controller-->
+        <scene sceneID="dkv-Z5-U60">
+            <objects>
+                <viewController id="SNO-3a-qzu" customClass="RandomLocationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8as-2y-zal"/>
+                        <viewControllerLayoutGuide type="bottom" id="upb-B8-P8E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H6z-3G-fdh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RU3-SC-ZZ0">
+                                <rect key="frame" x="-5" y="-57" width="325" height="625"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-nA-6p8">
+                                <rect key="frame" x="0.0" y="428" width="320" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="WAL-ms-KcA">
+                                        <rect key="frame" x="20" y="8" width="280" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_help.png" translatesAutoresizingMaskIntoConstraints="NO" id="KBA-s4-09l">
+                                        <rect key="frame" x="263" y="62" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="a32-UT-NJf"/>
+                    <connections>
+                        <outlet property="imageViewLocation" destination="RU3-SC-ZZ0" id="hiI-Qv-dms"/>
+                        <outlet property="labelLocationName" destination="WAL-ms-KcA" id="0BB-r5-Mop"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XN1-a4-zYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4076" y="48"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="8hK-6I-gHT">
@@ -287,8 +334,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="Iau-Oo-SiH" kind="push" identifier="ShowRandom" id="W07-b2-kxG"/>
                         <segue destination="g9Y-JV-y1W" kind="push" identifier="ShowFavourites" id="C72-C1-5B7"/>
+                        <segue destination="SNO-3a-qzu" kind="push" identifier="ShowRandom" id="AeR-pq-YpW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Vc-Qm-XM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -412,6 +459,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="qkL-Pp-joq"/>
-        <segue reference="bwc-zA-PTN"/>
     </inferredMetricsTieBreakers>
 </document>

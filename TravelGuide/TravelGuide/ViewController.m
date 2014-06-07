@@ -27,29 +27,34 @@
 {
     [super viewDidLoad];
     
- 
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    self.categoryNames=[[NSArray alloc]initWithObjects:@"Arts and entertainment",@"Food and drink",@"Nightlife",@"Outdoors and recreation",@"Shop and services", @"Travel & Transport", nil];
+     self.categoryNames=[[NSArray alloc]initWithObjects:@"Arts and entertainment",@"Food and drink",@"Nightlife",@"Outdoors and recreation",@"Shop and services", @"Travel & Transport", nil];
     
     self.backgroundImages=[[NSArray alloc]initWithObjects:@"background1.jpg",@"background2.jpg",@"background3.jpg",@"background4.jpg",@"background5.jpg",@"background6.jpg",@"background7.jpg",@"background8.jpg",@"background9.jpg",@"background10.jpg", nil];
     
     self.categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", @"4d4b7105d754a06379d81259", nil];
     
-  //  int num=rand()%[self.backgroundImages count];
+  // set random background
     int num = arc4random() % [self.backgroundImages count];
     
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.backgroundImages
                                                                                          objectAtIndex: num]]];
     [tempImageView setFrame:self.tableView.frame];
-    
     self.tableView.backgroundView = tempImageView;
+    
     
     self.locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.distanceFilter = 100.0f;
     [_locationManager startUpdatingLocation];
+    
+     //set default location in prefs
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        NSMutableDictionary *dictionary=[NSMutableDictionary dictionary];
+        dictionary[@"lat"]= @"42.0000";
+        dictionary[@"lng"]= @"21.4333";
+        [prefs setObject:dictionary forKey:@"latitudeLongitudePrefs"];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,11 +141,17 @@
     
    // [_locationManager stopUpdatingLocation];
     
+    //set new detected location to prefs
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dictionary=[NSMutableDictionary dictionary];
+    dictionary[@"lat"]= latitudeString;
+    dictionary[@"lng"]=longitudeString;
+    [prefs setObject:dictionary forKey:@"latitudeLongitudePrefs"];
+    
     
     NSMutableArray *favouritesArray=[[NSMutableArray alloc] init];
     
     //read user data:
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
     
     //exists = true if there is a place that is at most 200m far from user location
