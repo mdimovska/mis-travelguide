@@ -37,8 +37,9 @@
    
    //formated url with categoryId from the previous page!
     //GET LAT AND LONG!!!!!
-    NSString *lat=[self.categoryDetailModel objectAtIndex:3];
-    NSString * lng= [self.categoryDetailModel objectAtIndex:4];
+    NSString *categoryName=[self.categoryDetailModel objectAtIndex:1];
+    NSString *lat=[self.categoryDetailModel objectAtIndex:2];
+    NSString * lng= [self.categoryDetailModel objectAtIndex:3];
 
     NSString *url=   [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/explore?client_id=5V0A4GCWI2BDB5LIA1OEJW4DOH3NVFPUVIVW4CWMCH0ZWZXU&client_secret=02U2I0PBBOOLOLWCPSKER3RVRJZRCNW0CLSZUYUHSKDUGHCV&ll=%@,%@&categoryId=%@&v=20140603", lat,lng,[self.categoryDetailModel objectAtIndex:0]];
     
@@ -49,17 +50,18 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:url]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-  //  self.navigationController.view.tintColor=[UIColor blackColor];
-    /*
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
-    backButton.title = @"";
-    backButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.backBarButtonItem = backButton;
-    
- //   [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];}
-*/
-}
+ 
+   //navigation bar style
+    //transparent navigation bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                             forBarMetrics:UIBarMetricsDefault];
+  //  self.navigationController.navigationBar.topItem.title = categoryName;
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+
+ }
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
     [self.responseData setLength:0];
@@ -216,6 +218,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+     self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [super viewWillAppear:animated];
 }
 

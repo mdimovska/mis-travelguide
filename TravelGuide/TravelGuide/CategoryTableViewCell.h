@@ -10,7 +10,6 @@
 
 @interface CategoryTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UIImageView *categoryImage;
 @property (nonatomic, strong) IBOutlet UILabel *categoryNameLabel;
 
 @end

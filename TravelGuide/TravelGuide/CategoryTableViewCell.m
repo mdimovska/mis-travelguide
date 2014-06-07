@@ -11,7 +11,6 @@
 @implementation CategoryTableViewCell
 
 @synthesize categoryNameLabel=_categoryNameLabel;
-@synthesize categoryImage=_categoryImage;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

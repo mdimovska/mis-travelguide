@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.textArray=[[NSArray alloc]initWithObjects:@"Random location",@"Favourites", nil];
-    self.imagesArray=[[NSArray alloc]initWithObjects:@"share_icon.png", @"star_icon.png", nil];
+    self.imagesArray=[[NSArray alloc]initWithObjects:@"icon_help", @"icon_star.png", nil];
 
 }
 
@@ -97,6 +97,7 @@
     }else  if ([[segue identifier] isEqualToString:@"ShowFavourites"])
     {
     }
+   
 }
 
 

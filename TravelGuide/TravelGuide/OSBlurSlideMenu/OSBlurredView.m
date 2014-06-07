@@ -28,6 +28,7 @@
     self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self.imageView.backgroundColor = [UIColor lightGrayColor];
     self.imageView.contentMode = UIViewContentModeScaleToFill;
+
     [self addSubview:self.imageView];
 }
 
