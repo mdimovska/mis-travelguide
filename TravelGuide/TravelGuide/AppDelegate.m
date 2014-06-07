@@ -40,6 +40,12 @@
      [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
       navigationController.navigationBar.topItem.title = @"";
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    //black status bar
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,320, 20)];
+    view.backgroundColor=[UIColor blackColor];
+    [navigationController.view addSubview:view];
       
     // Override point for customization after application launch.
     return YES;

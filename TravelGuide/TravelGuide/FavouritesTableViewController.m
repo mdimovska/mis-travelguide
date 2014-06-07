@@ -8,6 +8,7 @@
 
 #import "FavouritesTableViewController.h"
 #import "PlacesTableViewCell.h"
+#import "PlaceDetailsViewController.h"
 
 @interface FavouritesTableViewController ()
 
@@ -42,6 +43,13 @@
     //read back data:
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
+    
+    //navigation bar style (transparent navigation bar)
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
 
 }
     
@@ -123,19 +131,59 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ShowPlaceDetails"])
+    {
+        PlaceDetailsViewController *detailViewController =
+        [segue destinationViewController];
+        
+        NSIndexPath *myIndexPath = [self.tableView
+                                    indexPathForSelectedRow];
+        
+        NSMutableDictionary *result =[favouritesArray objectAtIndex: [myIndexPath row]];
+        
+        //we won't need to worry whether it's nil or not... (it's checked in categoryDetailsViewController before it's passed to PlaceDetailsViewController)
+        NSString *name=  result[@"name"];
+        NSString *distance= result[@"distance"];
+        NSString *category= result[@"category"];
+        NSString *address= result[@"address"];
+        NSString *country= result[@"country"];
+        NSString *lat= result[@"lat"];
+        NSString *lng= result[@"lng"];
+        NSString *placeId= result[@"placeId"];
+        NSString *likes= result[@"likes"];
+        NSString *rating= result[@"rating"];
+        NSString *tips= result[@"tips"];
+        
+        detailViewController.placeDetailModel = [[NSArray alloc]
+                                                 initWithObjects:
+                                                 name,
+                                                 distance,
+                                                 category,
+                                                 address,
+                                                 country,
+                                                 lat,
+                                                 lng,
+                                                 placeId,
+                                                 likes,
+                                                 rating,
+                                                 tips,
+                                                 nil];
+        
+    }
+
 }
-*/
+
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    //navigation bar style (transparent navigation bar)
+    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }

@@ -35,12 +35,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    
-   //formated url with categoryId from the previous page!
-    //GET LAT AND LONG!!!!!
     NSString *categoryName=[self.categoryDetailModel objectAtIndex:1];
     NSString *lat=[self.categoryDetailModel objectAtIndex:2];
     NSString * lng= [self.categoryDetailModel objectAtIndex:3];
 
+    //formated url with categoryId from the previous page
     NSString *url=   [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/explore?client_id=5V0A4GCWI2BDB5LIA1OEJW4DOH3NVFPUVIVW4CWMCH0ZWZXU&client_secret=02U2I0PBBOOLOLWCPSKER3RVRJZRCNW0CLSZUYUHSKDUGHCV&ll=%@,%@&categoryId=%@&v=20140603", lat,lng,[self.categoryDetailModel objectAtIndex:0]];
     
      self.responseArray = [[NSArray alloc] init];
@@ -50,12 +49,11 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:url]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
- 
-   //navigation bar style
-    //transparent navigation bar
+    
+    
+    //navigation bar style (transparent navigation bar)
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                              forBarMetrics:UIBarMetricsDefault];
-  //  self.navigationController.navigationBar.topItem.title = categoryName;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
@@ -114,20 +112,7 @@
                                     indexPathForSelectedRow];
         
         NSDictionary *result =[self.responseArray objectAtIndex: [myIndexPath row]];
-        
-        /*
-         name,
-         distance,
-         categoryName,
-         address,
-         country,
-         lat,
-         lng,
-         id,
-         likes,
-         rating,
-         
-         */
+       
         NSString *name=@"";
         NSString *distance=@"";
         NSString *category=@"";
@@ -204,21 +189,14 @@
     NSDictionary *result =[self.responseArray objectAtIndex: [indexPath row]];
     
     cell.placeNameLabel.text = result[@"venue"][@"name"];
-     cell.placeDistanceLabel.text =  [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]];
-    cell.placeLocationLabel.text = [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"];
-        
-    //[self.responseArray objectAtIndex: [indexPath row]][@"venue"][@"name"];
-    
-   // UIImage *categoryPhoto = [UIImage imageNamed:
-   //                           [self.categoryImages objectAtIndex: [indexPath row]]];
-   // cell.categoryImage.image = categoryPhoto;
-    
+    cell.placeDistanceLabel.text =  [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]];
+    cell.placeLocationLabel.text = [result[@"venue"][@"categories"] objectAtIndex: 0][@"name"];    
     return cell;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-     self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [super viewWillAppear:animated];
 }
 
