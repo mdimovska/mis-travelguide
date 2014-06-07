@@ -117,29 +117,12 @@
         NSString *imageUrl=[NSString stringWithFormat:@"%@300x500%@",result[@"prefix"], result[@"suffix"]];
         NSLog(imageUrl);
         
-        /*
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
-        dispatch_async(queue, ^{
-            
-            NSString *u=[NSString stringWithContentsOfFile:imageUrl encoding:NSUTF8StringEncoding error:nil];
-            NSURL *imageURL=[NSURL URLWithString:u];
-            NSData *imageData=[NSData dataWithContentsOfURL:imageURL];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                imageViewLocation.image=[UIImage imageWithData:imageData];
-            });
-        });
-        */
         if(imageUrl != nil){
-        NSURL *imageURL = [NSURL URLWithString:imageUrl];
-        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage *image = [UIImage imageWithData:imageData];
-    
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+             NSURL *imageURL = [NSURL URLWithString:imageUrl];
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                // Update the UI
                imageViewLocation.image = [UIImage imageWithData:imageData];
             });
         });
