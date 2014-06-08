@@ -15,6 +15,7 @@
 @implementation RandomLocationViewController
 @synthesize  categoryIDs;
 @synthesize imageViewLocation;
+@synthesize imageViewInfo;
 @synthesize labelLocationName;
 @synthesize latitude;
 @synthesize longitude;
@@ -39,20 +40,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    isSecondRequest=false;
-    
     categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", @"4d4b7105d754a06379d81259", nil];
     
     imageViewLocation.image = [UIImage imageNamed:@"default_random_image.jpg"];
     labelLocationName.text=@"";
+  
+    [self getRandomLocationFromUrl];
+    
+    //navigation bar style (transparent navigation bar)
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+}
+
+-(void)getRandomLocationFromUrl{
+    isSecondRequest=false;
     
     //  random number (for getting random category)
-    int rand = arc4random() % [self.categoryIDs count];
+    int rand = arc4random() % [categoryIDs count];
     
     //get location from prefs
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSDictionary *dictionary= [prefs dictionaryForKey:@"latitudeLongitudePrefs"];
-  
+    
     latitude=dictionary[@"lat"];
     longitude=dictionary[@"lng"];
     
@@ -67,31 +79,22 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:url]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    
-    
-    //navigation bar style (transparent navigation bar)
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
 }
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
     if(isSecondRequest)
-          [self.responseDataImage setLength:0];
+          [responseDataImage setLength:0];
         else
-    [self.responseData setLength:0];
+    [responseData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if(isSecondRequest)
-        [self.responseDataImage appendData:data];
+        [responseDataImage appendData:data];
     else
-    [self.responseData appendData:data];
+    [responseData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -108,32 +111,35 @@
     
     if(isSecondRequest){
         //get imageUrl
-           NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseDataImage options:NSJSONReadingMutableLeaves error:&myError];
+           NSDictionary *res = [NSJSONSerialization JSONObjectWithData:responseDataImage options:NSJSONReadingMutableLeaves error:&myError];
         responseArrayImage= res[@"response"][@"photos"][@"items"];
         
-        //get first image
-        NSDictionary *result =[responseArrayImage objectAtIndex: 0];
+        if([responseArrayImage count]>0)
+        {
+            //get first image
+            NSDictionary *result =[responseArrayImage objectAtIndex: 0];
         
-        NSString *imageUrl=[NSString stringWithFormat:@"%@300x500%@",result[@"prefix"], result[@"suffix"]];
-        NSLog(imageUrl);
+            NSString *imageUrl=[NSString stringWithFormat:@"%@300x500%@",result[@"prefix"], result[@"suffix"]];
+            NSLog(imageUrl);
         
-        if(imageUrl != nil){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-             NSURL *imageURL = [NSURL URLWithString:imageUrl];
-            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            if(imageUrl != nil){
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                NSURL *imageURL = [NSURL URLWithString:imageUrl];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-               imageViewLocation.image = [UIImage imageWithData:imageData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                imageViewLocation.image = [UIImage imageWithData:imageData];
+                labelLocationName.text=[randomLocationModel objectAtIndex:0];
+                imageViewInfo.hidden=NO;
             });
-        });
+            });
+            }
         }
-        
+        isSecondRequest=false;
     }else{
-           NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
     NSArray *groupsArray = res[@"response"][@"groups"];
     responseArray= [groupsArray objectAtIndex: 0][@"items"];
-    
-    //NSLog(@"items:  %@",[self.responseArray objectAtIndex: 0]);
     
     ///get random item and fill view with data
     
@@ -193,7 +199,7 @@
                                              rating,
                                              tips,
                                              nil];
-    labelLocationName.text=name;
+  //  labelLocationName.text=name;
     
     //second request to retrieve image url
         
@@ -223,8 +229,43 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [self resignFirstResponder];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
+}
+
+
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+}
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake )
+    {
+        // User was shaking the device
+        NSLog(@"SHAKE");
+        //another request for random location
+        [self getRandomLocationFromUrl];
+    }
+}
+
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+}
+
+- (void)shakeSuccess
+{
+    // do something...
 }
 
 /*

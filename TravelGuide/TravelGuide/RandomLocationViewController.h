@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSArray *categoryIDs;
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewLocation;
 @property (strong, nonatomic) IBOutlet UILabel *labelLocationName;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewInfo;
 
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSArray *responseArray;

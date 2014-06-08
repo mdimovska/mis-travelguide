@@ -17,9 +17,9 @@
 @implementation CategoryDetailsViewController
 
 
-@synthesize categoryDetailModel = _categoryDetailModel;
-@synthesize responseData = _responseData;
-@synthesize responseArray=_responseArray;
+@synthesize categoryDetailModel ;
+@synthesize responseData ;
+@synthesize responseArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,16 +35,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    
-    NSString *categoryName=[self.categoryDetailModel objectAtIndex:1];
-    NSString *lat=[self.categoryDetailModel objectAtIndex:2];
-    NSString * lng= [self.categoryDetailModel objectAtIndex:3];
-
+    NSString *categoryName=[categoryDetailModel objectAtIndex:1];
+    NSString *lat=[categoryDetailModel objectAtIndex:2];
+    NSString * lng= [categoryDetailModel objectAtIndex:3];
+    
+    
     //formated url with categoryId from the previous page
-    NSString *url=   [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/explore?client_id=5V0A4GCWI2BDB5LIA1OEJW4DOH3NVFPUVIVW4CWMCH0ZWZXU&client_secret=02U2I0PBBOOLOLWCPSKER3RVRJZRCNW0CLSZUYUHSKDUGHCV&ll=%@,%@&categoryId=%@&v=20140603", lat,lng,[self.categoryDetailModel objectAtIndex:0]];
+    NSString *url=   [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/explore?client_id=5V0A4GCWI2BDB5LIA1OEJW4DOH3NVFPUVIVW4CWMCH0ZWZXU&client_secret=02U2I0PBBOOLOLWCPSKER3RVRJZRCNW0CLSZUYUHSKDUGHCV&ll=%@,%@&categoryId=%@&v=20140603", lat,lng,[categoryDetailModel objectAtIndex:0]];
     
-    self.responseArray = [[NSArray alloc] init];
+    responseArray = [[NSArray alloc] init];
     
-    self.responseData = [NSMutableData data];
+    responseData = [NSMutableData data];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:url]];
@@ -62,11 +63,11 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
+    [responseData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
+    [responseData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -79,11 +80,11 @@
     
     // convert to JSON
     NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
     
   NSArray *groupsArray = res[@"response"][@"groups"];
     
-    self.responseArray= [groupsArray objectAtIndex: 0][@"items"];
+    responseArray= [groupsArray objectAtIndex: 0][@"items"];
    
   //  NSLog(@"items:  %@",[self.responseArray objectAtIndex: 0]);
     
@@ -111,7 +112,7 @@
         NSIndexPath *myIndexPath = [self.tableView
                                     indexPathForSelectedRow];
         
-        NSDictionary *result =[self.responseArray objectAtIndex: [myIndexPath row]];
+        NSDictionary *result =[responseArray objectAtIndex: [myIndexPath row]];
        
         NSString *name=@"";
         NSString *distance=@"";
@@ -172,7 +173,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.responseArray count];
+    return [responseArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,7 +187,7 @@
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
     }
-    NSDictionary *result =[self.responseArray objectAtIndex: [indexPath row]];
+    NSDictionary *result =[responseArray objectAtIndex: [indexPath row]];
     
     cell.placeNameLabel.text = result[@"venue"][@"name"];
     cell.placeDistanceLabel.text =  [NSString stringWithFormat:@" %@ m", result[@"venue"][@"location"][@"distance"]];
@@ -195,9 +196,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+   [super viewWillAppear:animated];
+    NSLog([categoryDetailModel objectAtIndex:1]);
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    [super viewWillAppear:animated];
+    
+    //set light gray title of view
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  lightGrayColor] forKey:NSForegroundColorAttributeName];
+    [self setTitle:@""];
+    self.title=[categoryDetailModel objectAtIndex:1];
+   
 }
 
 

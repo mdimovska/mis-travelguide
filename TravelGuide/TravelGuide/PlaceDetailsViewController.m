@@ -14,7 +14,7 @@
 
 @implementation PlaceDetailsViewController
 
-@synthesize placeDetailModel=_placeDetailModel;
+@synthesize placeDetailModel;
 @synthesize nameLabel;
 @synthesize distanceLabel;
 @synthesize  categoryLabel;
@@ -34,7 +34,7 @@
 @synthesize tips;
 @synthesize tipsView;
 
-@synthesize mapView=_mapView;
+@synthesize mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,23 +49,23 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    name=[self.placeDetailModel objectAtIndex:0];
-    distance=[self.placeDetailModel objectAtIndex:1];
-    category=[self.placeDetailModel objectAtIndex:2];
-    address=[self.placeDetailModel objectAtIndex:3];
-    country=[self.placeDetailModel objectAtIndex:4];
-    lat=[self.placeDetailModel objectAtIndex:5];
-    lng=[self.placeDetailModel objectAtIndex:6];
-    placeId=[self.placeDetailModel objectAtIndex:7];
-    likes=[self.placeDetailModel objectAtIndex:8];
-    rating=[self.placeDetailModel objectAtIndex:9];
-     tips=[self.placeDetailModel objectAtIndex:10];
+    name=[placeDetailModel objectAtIndex:0];
+    distance=[placeDetailModel objectAtIndex:1];
+    category=[placeDetailModel objectAtIndex:2];
+    address=[placeDetailModel objectAtIndex:3];
+    country=[placeDetailModel objectAtIndex:4];
+    lat=[placeDetailModel objectAtIndex:5];
+    lng=[placeDetailModel objectAtIndex:6];
+    placeId=[placeDetailModel objectAtIndex:7];
+    likes=[placeDetailModel objectAtIndex:8];
+    rating=[placeDetailModel objectAtIndex:9];
+     tips=[placeDetailModel objectAtIndex:10];
     
     nameLabel.text = name;
     distanceLabel.text = distance;
     categoryLabel.text = category;
-    //self.addressLabel.text = address;
-   // self.countryLabel.text = country;
+    //addressLabel.text = address;
+    //countryLabel.text = country;
     addressLabel.text = rating;
     countryLabel.text = likes;
     tipsLabel.text=tips;
@@ -80,20 +80,6 @@
     self.navigationController.view.tintColor=[UIColor whiteColor];
     self.navigationController.navigationBar.topItem.title = @"";
     
-    
-    // [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
-    
-    /*
-    self.navigationItem.backBarButtonItem.tintColor = [UIColor whiteColor];
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
-    backButton.title = @"";
-    backButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.backBarButtonItem = backButton;
-    
-    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
-    */
-    
     CLLocationCoordinate2D centerCoordinate;
     centerCoordinate.latitude = [lat doubleValue];
     centerCoordinate.longitude = [lng doubleValue];
@@ -103,12 +89,11 @@
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:centerCoordinate];
-     [annotation setTitle: [NSString stringWithFormat:@"%@",address]];
+    [annotation setTitle: [NSString stringWithFormat:@"%@",address]];
     [annotation setSubtitle:[NSString stringWithFormat:@"%@",country]];
-
     
-    [self.mapView setRegion:region];
-    [self.mapView addAnnotation:annotation];
+    [mapView setRegion:region];
+    [mapView addAnnotation:annotation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,6 +114,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 - (IBAction)btnShowTipsClick:(id)sender {
     if(![tips isEqualToString:@""]){
     [UIView transitionWithView:tipsView

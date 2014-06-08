@@ -10,7 +10,7 @@
 
 @implementation CategoryTableViewCell
 
-@synthesize categoryNameLabel=_categoryNameLabel;
+@synthesize categoryNameLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

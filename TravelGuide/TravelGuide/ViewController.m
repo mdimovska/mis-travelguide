@@ -17,36 +17,30 @@
 
 @implementation ViewController
 
-@synthesize backgroundImages=_backgroundImages;
-@synthesize categoryNames=_categoryNames;
-@synthesize categoryIDs=_categoryIDs;
-@synthesize locationManager=_locationManager;
-@synthesize location=_location;
+@synthesize backgroundImages;
+@synthesize categoryNames;
+@synthesize categoryIDs;
+@synthesize locationManager;
+@synthesize location;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-     self.categoryNames=[[NSArray alloc]initWithObjects:@"Arts and entertainment",@"Food and drink",@"Nightlife",@"Outdoors and recreation",@"Shop and services", @"Travel & Transport", nil];
+    NSLog(@"viewDidLoad");
     
-    self.backgroundImages=[[NSArray alloc]initWithObjects:@"background1.jpg",@"background2.jpg",@"background3.jpg",@"background4.jpg",@"background5.jpg",@"background6.jpg",@"background7.jpg",@"background8.jpg",@"background9.jpg",@"background10.jpg", nil];
+      categoryNames=[[NSArray alloc]initWithObjects:@"Arts and entertainment",@"Food and drink",@"Nightlife",@"Outdoors and recreation",@"Shops and services", @"Travel and transport", nil];
     
-    self.categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", @"4d4b7105d754a06379d81259", nil];
+     backgroundImages=[[NSArray alloc]initWithObjects:@"background1.jpg",@"background2.jpg",@"background3.jpg",@"background4.jpg",@"background5.jpg",@"background6.jpg",@"background7.jpg",@"background8.jpg",@"background9.jpg",@"background10.jpg", nil];
     
-  // set random background
-    int num = arc4random() % [self.backgroundImages count];
-    
-    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.backgroundImages
-                                                                                         objectAtIndex: num]]];
-    [tempImageView setFrame:self.tableView.frame];
-    self.tableView.backgroundView = tempImageView;
+     categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", @"4d4b7105d754a06379d81259", nil];
     
     
-    self.locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = 100.0f;
-    [_locationManager startUpdatingLocation];
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 100.0f;
+    [locationManager startUpdatingLocation];
     
      //set default location in prefs
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -73,7 +67,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.categoryNames count];
+    return [categoryNames count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,7 +83,7 @@
     }
     
     // Configure the cell...
-    cell.categoryNameLabel.text = [self.categoryNames
+    cell.categoryNameLabel.text = [categoryNames
                            objectAtIndex: [indexPath row]];
     
     return cell;
@@ -106,18 +100,18 @@
                                     indexPathForSelectedRow];
         NSString *lat;
         NSString *lng;
-        if (_location == nil){
+        if (location == nil){
             lat=@"42.0000";
             lng=@"21.4333";
         }else{
-            lat=[NSString stringWithFormat:@"%f", _location.coordinate.latitude];
-            lng=[NSString stringWithFormat:@"%f", _location.coordinate.longitude];
+            lat=[NSString stringWithFormat:@"%f", location.coordinate.latitude];
+            lng=[NSString stringWithFormat:@"%f", location.coordinate.longitude];
         }
         
         detailViewController.categoryDetailModel = [[NSArray alloc]
                                                initWithObjects:
-                                                    [self.categoryIDs objectAtIndex:[myIndexPath row]],
-                                                    [self.categoryNames objectAtIndex:[myIndexPath row]],
+                                                    [categoryIDs objectAtIndex:[myIndexPath row]],
+                                                    [categoryNames objectAtIndex:[myIndexPath row]],
                                                    lat,
                                                     lng,
                                                nil];
@@ -129,14 +123,15 @@
 #pragma mark CLLocationManagerDelegate Methods
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
-    _location = [locations lastObject];
+    NSLog(@"didUpdateLocations");
+    location = [locations lastObject];
     
     NSString *latitudeString = [NSString stringWithFormat:@"%f",
-                                _location.coordinate.latitude];
+                                location.coordinate.latitude];
     NSLog(@"lat:   %@",latitudeString);
     
     NSString *longitudeString = [NSString stringWithFormat:@"%f",
-                                 _location.coordinate.longitude];
+                                 location.coordinate.longitude];
     NSLog(@"long:   %@",longitudeString);
     
    // [_locationManager stopUpdatingLocation];
@@ -161,7 +156,7 @@
     for (NSMutableDictionary *dict in favouritesArray) {
      
         CLLocation *favouriteLocation = [[CLLocation alloc] initWithLatitude: [dict[@"lat"] doubleValue] longitude: [dict[@"lng"] doubleValue] ];
-        CLLocationDistance distance = [_location distanceFromLocation:favouriteLocation];
+        CLLocationDistance distance = [location distanceFromLocation:favouriteLocation];
         
         NSString *distanceString = [NSString stringWithFormat: @"%f", distance];
         NSLog(distanceString);
@@ -199,7 +194,7 @@
 }
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    _location=nil;
+    location=nil;
     switch([error code])
     {
         case kCLErrorNetwork: // general, network-related error
@@ -224,11 +219,21 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"viewWillAppear");
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    // set random background
+    int num = arc4random() % [backgroundImages count];
+    
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[backgroundImages
+                                                                                         objectAtIndex: num]]];
+    [tempImageView setFrame:self.tableView.frame];
+    self.tableView.backgroundView = tempImageView;
+    
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"viewWillDisappear");
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }

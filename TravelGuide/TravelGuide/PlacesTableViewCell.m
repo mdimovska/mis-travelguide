@@ -10,9 +10,9 @@
 
 @implementation PlacesTableViewCell
 
-@synthesize placeNameLabel=_placeNameLabel;
-@synthesize placeDistanceLabel=_placeDistanceLabel;
-@synthesize placeLocationLabel=_placeLocationLabel;
+@synthesize placeNameLabel;
+@synthesize placeDistanceLabel;
+@synthesize placeLocationLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
