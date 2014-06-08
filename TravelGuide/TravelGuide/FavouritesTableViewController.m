@@ -181,10 +181,14 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+      [super viewWillAppear:animated];
     //navigation bar style (transparent navigation bar)
     self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  lightGrayColor] forKey:NSForegroundColorAttributeName];
+    [self setTitle:@""];
+    self.title=@"Favourite locations";
+  
 }
 
 @end

@@ -219,7 +219,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"viewWillAppear");
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     // set random background
     int num = arc4random() % [backgroundImages count];
@@ -233,7 +232,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear");
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }

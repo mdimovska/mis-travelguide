@@ -7,6 +7,7 @@
 //
 
 #import "RandomLocationViewController.h"
+#import "PlaceDetailsViewController.h"
 
 @interface RandomLocationViewController ()
 
@@ -15,7 +16,7 @@
 @implementation RandomLocationViewController
 @synthesize  categoryIDs;
 @synthesize imageViewLocation;
-@synthesize imageViewInfo;
+@synthesize buttonInfo;
 @synthesize labelLocationName;
 @synthesize latitude;
 @synthesize longitude;
@@ -130,7 +131,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                 imageViewLocation.image = [UIImage imageWithData:imageData];
                 labelLocationName.text=[randomLocationModel objectAtIndex:0];
-                imageViewInfo.hidden=NO;
+                buttonInfo.hidden=NO;
             });
             });
             }
@@ -199,6 +200,7 @@
                                              rating,
                                              tips,
                                              nil];
+
   //  labelLocationName.text=name;
     
     //second request to retrieve image url
@@ -230,7 +232,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self resignFirstResponder];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
 }
 
@@ -265,18 +266,20 @@
 
 - (void)shakeSuccess
 {
-    // do something...
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ShowRandomLocationDetails"])
+    {
+        PlaceDetailsViewController *detailViewController =  [segue destinationViewController] ;
+        detailViewController.placeDetailModel = [[NSArray alloc]initWithArray:randomLocationModel];
+    }
 }
-*/
+
 
 @end

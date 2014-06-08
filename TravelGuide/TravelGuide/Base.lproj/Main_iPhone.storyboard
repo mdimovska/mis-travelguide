@@ -275,10 +275,16 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_help.png" translatesAutoresizingMaskIntoConstraints="NO" id="KBA-s4-09l">
-                                        <rect key="frame" x="263" y="62" width="50" height="50"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EH-u0-1qL">
+                                        <rect key="frame" x="259" y="63" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
+                                        <state key="normal" image="icon_help.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="3JU-eX-rS3" kind="push" identifier="ShowRandomLocationDetails" id="cUU-5O-lDu"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
@@ -287,7 +293,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="a32-UT-NJf"/>
                     <connections>
-                        <outlet property="imageViewInfo" destination="KBA-s4-09l" id="jIV-qb-T98"/>
+                        <outlet property="buttonInfo" destination="9EH-u0-1qL" id="GT7-DM-AAf"/>
                         <outlet property="imageViewLocation" destination="RU3-SC-ZZ0" id="hiI-Qv-dms"/>
                         <outlet property="labelLocationName" destination="WAL-ms-KcA" id="0BB-r5-Mop"/>
                     </connections>
@@ -459,6 +465,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="qkL-Pp-joq"/>
+        <segue reference="cUU-5O-lDu"/>
     </inferredMetricsTieBreakers>
 </document>
