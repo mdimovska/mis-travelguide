@@ -43,7 +43,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     //black status bar
-    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,320, 20)];
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,800, 20)];
     view.backgroundColor=[UIColor blackColor];
     [navigationController.view addSubview:view];
     

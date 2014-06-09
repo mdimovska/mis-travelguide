@@ -70,35 +70,15 @@
     [super viewWillDisappear:animated];
 }
 
-
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowRandom"])
     {
-        /*
-        CategoryDetailsViewController *detailViewController =  [segue destinationViewController] ;
-        
-        NSIndexPath *myIndexPath = [self.tableView
-                                    indexPathForSelectedRow];
-        NSString *lat;
-        NSString *lng;
-        lat=@"42.0000";
-        lng=@"21.4333";
-        
-        detailViewController.categoryDetailModel = [[NSArray alloc]
-                                                    initWithObjects:
-                                                    @"4d4b7104d754a06370d81259",
-                                                    [self.textArray objectAtIndex:[myIndexPath row]],
-                                                    [self.imagesArray objectAtIndex:[myIndexPath row]],
-                                                    lat,
-                                                    lng,
-                                                    nil];
-        */
     }else  if ([[segue identifier] isEqualToString:@"ShowFavourites"])
     {
     }
-   
 }
-
+*/
 
 @end
