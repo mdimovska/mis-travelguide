@@ -17,7 +17,7 @@
 {
     // Override point for customization after application launch.
     UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    
+
     ContentViewController *contentScreen = [mainStoryBoard instantiateViewControllerWithIdentifier:@"ContentScreen"];
     ContentViewController *menuScreen = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MenuScreen"];
     OSBlurSlideMenuController *slideController = [[OSBlurSlideMenuController alloc] initWithMenuViewController:menuScreen andContentViewController:contentScreen];
@@ -26,8 +26,7 @@
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
-    
-    
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     // Handle launching from a notification
@@ -38,7 +37,7 @@
     }
     
      [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-      navigationController.navigationBar.topItem.title = @"";
+     // navigationController.navigationBar.topItem.title = @"Travel guide";
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
@@ -48,7 +47,6 @@
     [navigationController.view addSubview:view];
     
     application.applicationSupportsShakeToEdit = YES;
-    
     // Override point for customization after application launch.
     return YES;
 }

@@ -102,6 +102,7 @@
 		[_menuViewController removeFromParentViewController];
 		_menuViewController = menuViewController;
 	}
+    
 }
 
 - (void)setContentViewController:(UIViewController *)contentViewController
@@ -437,6 +438,7 @@
         CGRect menuFrame = startFrame;
         menuFrame.origin.x = (1.f - blurDegree) * endFrame.origin.x + blurDegree * startFrame.origin.x;
         self.menuViewController.view.frame = menuFrame;
+        
     }
 	
 	if (panGesture.state == UIGestureRecognizerStateEnded)

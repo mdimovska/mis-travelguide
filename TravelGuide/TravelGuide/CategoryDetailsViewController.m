@@ -51,13 +51,20 @@
                              [NSURL URLWithString:url]];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    
+   
     //navigation bar style (transparent navigation bar)
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                             forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    
+     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+     forBarMetrics:UIBarMetricsDefault];
+     self.navigationController.navigationBar.shadowImage = [UIImage new];
+     self.navigationController.navigationBar.translucent = YES;
+     
+    self.navigationController.navigationBar.backgroundColor = [UIColor  colorWithRed:((float) 43 / 255.0f)
+                                                                               green:((float) 62 / 255.0f)
+                                                                                blue:((float) 80/ 255.0f)
+                                                                               alpha:0.8];
+    //set white title of view
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  whiteColor] forKey:NSForegroundColorAttributeName];
 
  }
 
@@ -199,10 +206,12 @@
    [super viewWillAppear:animated];
     NSLog([categoryDetailModel objectAtIndex:1]);
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    
-    //set light gray title of view
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  lightGrayColor] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.backgroundColor = [UIColor  colorWithRed:((float) 43 / 255.0f)
+                                                                              green:((float) 62 / 255.0f)
+                                                                               blue:((float) 80/ 255.0f)
+                                                                              alpha:0.8];
+    //set white title of view
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  whiteColor] forKey:NSForegroundColorAttributeName];
     [self setTitle:@""];
     self.title=[categoryDetailModel objectAtIndex:1];
    

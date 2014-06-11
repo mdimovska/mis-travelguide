@@ -35,6 +35,8 @@
 @synthesize tipsView;
 
 @synthesize mapView;
+@synthesize locationManager;
+@synthesize compassImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -94,6 +96,19 @@
     
     [mapView setRegion:region];
     [mapView addAnnotation:annotation];
+   
+    
+    locationManager=[[CLLocationManager alloc] init];
+	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	locationManager.headingFilter = 1;
+	locationManager.delegate=self;
+    if (locationManager.headingAvailable && locationManager.locationServicesEnabled)
+    {
+        locationManager.headingFilter = kCLHeadingFilterNone;
+        [locationManager startUpdatingHeading];
+    }else NSLog(@"nejke");
+   // [locationManager startUpdatingLocation];
+	//[locationManager startUpdatingHeading];
 }
 
 - (void)didReceiveMemoryWarning
@@ -169,5 +184,23 @@
         [alert show];
     }
     
+}
+
+#pragma mark -
+#pragma mark CLLocationManagerDelegate Methods
+- (void)locationManager:(CLLocationManager *)manager
+       didUpdateHeading:(CLHeading *)newHeading{
+	// Convert Degree to Radian and move the needle
+    NSLog(@"newHeading");
+	float oldRad =  -manager.heading.trueHeading * M_PI / 180.0f;
+	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
+	CABasicAnimation *theAnimation;
+	theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+	theAnimation.fromValue = [NSNumber numberWithFloat:oldRad];
+	theAnimation.toValue=[NSNumber numberWithFloat:newRad];
+	theAnimation.duration = 0.5f;
+	[compassImage.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+	compassImage.transform = CGAffineTransformMakeRotation(newRad);
+	NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 }
 @end

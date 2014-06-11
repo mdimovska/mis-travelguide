@@ -48,12 +48,18 @@
   
     [self getRandomLocationFromUrl];
     
-    //navigation bar style (transparent navigation bar)
+       //navigation bar style (transparent navigation bar)
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    self.navigationController.navigationBar.backgroundColor = [UIColor  clearColor];
+    /*
+    self.navigationController.navigationBar.backgroundColor = [UIColor  colorWithRed:((float) 43 / 255.0f)
+                                                                               green:((float) 62 / 255.0f)
+                                                                                blue:((float) 80/ 255.0f)
+                                                                               alpha:0.8];
+     */
 }
 
 -(void)getRandomLocationFromUrl{
@@ -143,7 +149,7 @@
     responseArray= [groupsArray objectAtIndex: 0][@"items"];
     
     ///get random item and fill view with data
-    
+        if([responseArray count] >0){
     int rand = arc4random() % [responseArray count];
 
     NSDictionary *result =[responseArray objectAtIndex: rand];
@@ -213,7 +219,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:
                                  [NSURL URLWithString:url]];
         [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
+        }
     }
 }
 

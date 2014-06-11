@@ -17,7 +17,6 @@
 
 @implementation ViewController
 
-@synthesize backgroundImages;
 @synthesize categoryNames;
 @synthesize categoryIDs;
 @synthesize locationManager;
@@ -26,12 +25,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        self.navigationController.navigationBar.topItem.title = @"Travel guide";
     NSLog(@"viewDidLoad");
     
       categoryNames=[[NSArray alloc]initWithObjects:@"Arts and entertainment",@"Food and drink",@"Nightlife",@"Outdoors and recreation",@"Shops and services", @"Travel and transport", nil];
-    
-     backgroundImages=[[NSArray alloc]initWithObjects:@"background1.jpg",@"background2.jpg",@"background3.jpg",@"background4.jpg",@"background5.jpg",@"background6.jpg",@"background7.jpg",@"background8.jpg",@"background9.jpg",@"background10.jpg", nil];
     
      categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", @"4d4b7105d754a06379d81259", nil];
     
@@ -48,6 +45,8 @@
         dictionary[@"lat"]= @"42.0000";
         dictionary[@"lng"]= @"21.4333";
         [prefs setObject:dictionary forKey:@"latitudeLongitudePrefs"];
+    
+   
 
 }
 
@@ -219,20 +218,31 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    // set random background
-    int num = arc4random() % [backgroundImages count];
-    
-    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[backgroundImages
-                                                                                         objectAtIndex: num]]];
-    [tempImageView setFrame:self.tableView.frame];
-    self.tableView.backgroundView = tempImageView;
-    
     [super viewWillAppear:animated];
-}
+
+  [self.navigationController setNavigationBarHidden:YES animated:animated];
+    //navigation bar style (transparent navigation bar)
+     /*
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+   
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:((float) 21 / 255.0f)
+                                                                              green:((float) 160 / 255.0f)
+                                                                               blue:((float) 132/ 255.0f)
+                                                                              alpha:0.8f];
+       //set white title of view
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  whiteColor] forKey:NSForegroundColorAttributeName];
+   //    self.title=@"Travel guide";
+    self.navigationController.navigationBar.topItem.title = @"Travel guide";
+     */
+
+  }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+     self.navigationController.navigationBar.topItem.title = @"";
+ //   [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
 }
 

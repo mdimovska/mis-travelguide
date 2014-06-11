@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface PlaceDetailsViewController : UIViewController
+@interface PlaceDetailsViewController : UIViewController <CLLocationManagerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *tipsView;
 - (IBAction)btnAddToFavouritesClick:(id)sender;
 
@@ -21,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *compassImage;
 
 @property (weak, atomic) NSString *name;
 @property (weak, atomic) NSString *distance;
@@ -35,6 +39,7 @@
 @property (weak, atomic) NSString *tips;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic,retain) CLLocationManager *locationManager;
 //@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

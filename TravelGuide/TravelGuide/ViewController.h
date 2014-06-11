@@ -11,7 +11,6 @@
 
 @interface ViewController : UITableViewController  <CLLocationManagerDelegate>
 
-@property (nonatomic, strong) NSArray *backgroundImages;
 @property (nonatomic, strong) NSArray *categoryNames;
 @property (nonatomic, strong) NSArray *categoryIDs;
 

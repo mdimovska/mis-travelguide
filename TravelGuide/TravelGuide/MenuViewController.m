@@ -45,7 +45,7 @@
     cell.textLabel.text = [self.textArray objectAtIndex: [indexPath row]];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.imageView.image=[UIImage imageNamed:[self.imagesArray objectAtIndex: [indexPath row]]];
-    
+    [cell.textLabel setFont:[UIFont fontWithName:@"Heiti TC Light 18.0" size:18]];
     return cell;
 }
 
@@ -61,12 +61,12 @@
  }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+ // [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
 
