@@ -33,7 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
    
     NSString *categoryName=[categoryDetailModel objectAtIndex:1];
     NSString *lat=[categoryDetailModel objectAtIndex:2];
@@ -53,7 +52,6 @@
     
    
     //navigation bar style (transparent navigation bar)
-    
      [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
      forBarMetrics:UIBarMetricsDefault];
      self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -92,8 +90,6 @@
   NSArray *groupsArray = res[@"response"][@"groups"];
     
     responseArray= [groupsArray objectAtIndex: 0][@"items"];
-   
-  //  NSLog(@"items:  %@",[self.responseArray objectAtIndex: 0]);
     
      [self.tableView reloadData];
  }
@@ -173,9 +169,7 @@
                                                  rating,
                                                  tips,
                                                  nil];
-        
     }
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -214,8 +208,6 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  whiteColor] forKey:NSForegroundColorAttributeName];
     [self setTitle:@""];
     self.title=[categoryDetailModel objectAtIndex:1];
-   
 }
-
 
 @end

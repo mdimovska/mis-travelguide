@@ -148,7 +148,7 @@
     //read user data:
     favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
     
-    //exists = true if there is a place that is at most 200m far from user location
+    //exists = true if there is a place that is at most 400m far from user location
     bool exists=false;
     NSString *nearPlaceName;
     NSInteger *nearPlaceDistance;
@@ -162,7 +162,7 @@
         
         NSMutableArray *locationsArray=[[NSMutableArray alloc]init];
         
-        if([distanceString doubleValue]<=200){
+        if([distanceString doubleValue]<=400){
             exists=true;
             NSLog(@"dist:   %@",distanceString);
             NSLog(@"name:   %@",dict[@"name"]);
@@ -219,30 +219,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
   [self.navigationController setNavigationBarHidden:YES animated:animated];
-    //navigation bar style (transparent navigation bar)
-     /*
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-   
-    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:((float) 21 / 255.0f)
-                                                                              green:((float) 160 / 255.0f)
-                                                                               blue:((float) 132/ 255.0f)
-                                                                              alpha:0.8f];
-       //set white title of view
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  whiteColor] forKey:NSForegroundColorAttributeName];
-   //    self.title=@"Travel guide";
-    self.navigationController.navigationBar.topItem.title = @"Travel guide";
-     */
-
   }
 
 - (void)viewWillDisappear:(BOOL)animated {
      self.navigationController.navigationBar.topItem.title = @"";
- //   [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillDisappear:animated];
 }
 

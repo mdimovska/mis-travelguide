@@ -16,7 +16,6 @@
 @implementation RandomLocationViewController
 @synthesize  categoryIDs;
 @synthesize imageViewLocation;
-@synthesize buttonInfo;
 @synthesize labelLocationName;
 @synthesize latitude;
 @synthesize longitude;
@@ -26,6 +25,7 @@
 @synthesize responseDataImage;
 @synthesize randomLocationModel;
 @synthesize isSecondRequest;
+@synthesize viewInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,12 +54,6 @@
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.backgroundColor = [UIColor  clearColor];
-    /*
-    self.navigationController.navigationBar.backgroundColor = [UIColor  colorWithRed:((float) 43 / 255.0f)
-                                                                               green:((float) 62 / 255.0f)
-                                                                                blue:((float) 80/ 255.0f)
-                                                                               alpha:0.8];
-     */
 }
 
 -(void)getRandomLocationFromUrl{
@@ -137,7 +131,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                 imageViewLocation.image = [UIImage imageWithData:imageData];
                 labelLocationName.text=[randomLocationModel objectAtIndex:0];
-                buttonInfo.hidden=NO;
+                viewInfo.hidden=NO;
             });
             });
             }
@@ -206,8 +200,6 @@
                                              rating,
                                              tips,
                                              nil];
-
-  //  labelLocationName.text=name;
     
     //second request to retrieve image url
         
@@ -222,7 +214,6 @@
         }
     }
 }
-
 
 
 - (void)didReceiveMemoryWarning
@@ -274,7 +265,6 @@
 {
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -286,6 +276,5 @@
         detailViewController.placeDetailModel = [[NSArray alloc]initWithArray:randomLocationModel];
     }
 }
-
 
 @end

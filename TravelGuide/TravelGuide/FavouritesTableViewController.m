@@ -30,12 +30,6 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     favouritesArray=[[NSMutableArray alloc] init];
@@ -54,8 +48,6 @@
                                                                                green:((float) 62 / 255.0f)
                                                                                 blue:((float) 80/ 255.0f)
                                                                                alpha:0.8];
-
-    
    }
     
 
@@ -178,9 +170,7 @@
                                                  rating,
                                                  tips,
                                                  nil];
-        
     }
-
 }
 
 
@@ -197,7 +187,6 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor  whiteColor] forKey:NSForegroundColorAttributeName];
     [self setTitle:@""];
     self.title=@"Favourite locations";
-  
 }
 
 @end

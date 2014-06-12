@@ -16,10 +16,7 @@
 
 @synthesize placeDetailModel;
 @synthesize nameLabel;
-@synthesize distanceLabel;
 @synthesize  categoryLabel;
-@synthesize addressLabel;
-@synthesize  countryLabel;
 @synthesize tipsLabel;
 @synthesize name;
 @synthesize distance;
@@ -37,6 +34,7 @@
 @synthesize mapView;
 @synthesize locationManager;
 @synthesize compassImage;
+@synthesize imageViewFavourites;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,7 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     name=[placeDetailModel objectAtIndex:0];
     distance=[placeDetailModel objectAtIndex:1];
     category=[placeDetailModel objectAtIndex:2];
@@ -64,12 +61,7 @@
      tips=[placeDetailModel objectAtIndex:10];
     
     nameLabel.text = name;
-    distanceLabel.text = distance;
     categoryLabel.text = category;
-    //addressLabel.text = address;
-    //countryLabel.text = country;
-    addressLabel.text = rating;
-    countryLabel.text = likes;
     tipsLabel.text=tips;
     
     //transparent navigation bar
@@ -106,9 +98,24 @@
     {
         locationManager.headingFilter = kCLHeadingFilterNone;
         [locationManager startUpdatingHeading];
-    }else NSLog(@"nejke");
-   // [locationManager startUpdatingLocation];
-	//[locationManager startUpdatingHeading];
+    }else NSLog(@"Can't startUpdatingHeading!");
+    
+    //read user data:
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+   NSMutableArray *favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
+    
+    bool exists=false;
+    for (NSMutableDictionary *dict in favouritesArray) {
+        if([dict[@"placeId"] isEqualToString: placeId]){
+            exists=true;
+            break;
+        }
+    }
+    if(exists)
+        imageViewFavourites.alpha=0.2;
+    //show current location on map
+   // mapView.showsUserLocation = YES;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -175,7 +182,7 @@
         //save user data
         [prefs setObject:favouritesArray forKey:@"favouritesArray"];
         
-        
+        imageViewFavourites.alpha=0.2;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Place is added to favourites!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }else{
@@ -202,5 +209,33 @@
 	[compassImage.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
 	compassImage.transform = CGAffineTransformMakeRotation(newRad);
 	NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
+}
+
+- (IBAction)btnShare:(id)sender
+{
+    NSString *text = [NSString stringWithFormat:@"You can't miss %@! Check out this app to find out the best places arround you!@",name];
+ //   NSURL *url = [NSURL URLWithString:@"http://roadfiresoftware.com/2014/02/how-to-add-facebook-and-twitter-sharing-to-an-ios-app/"];
+    UIImage *image = [UIImage imageNamed:@"launcher_icon_travel_guide"];
+    
+    UIActivityViewController *controller =
+    [[UIActivityViewController alloc]
+     initWithActivityItems:@[text, image]
+     applicationActivities:nil];
+    
+    controller.excludedActivityTypes = @[UIActivityTypePostToWeibo,
+                                         UIActivityTypeMessage,
+                                         UIActivityTypeMail,
+                                         UIActivityTypePrint,
+                                         UIActivityTypeCopyToPasteboard,
+                                         UIActivityTypeAssignToContact,
+                                         UIActivityTypeSaveToCameraRoll,
+                                         UIActivityTypeAddToReadingList,
+                                         UIActivityTypePostToFlickr,
+                                         UIActivityTypePostToFacebook,
+                                         UIActivityTypePostToVimeo,
+                                         UIActivityTypePostToTencentWeibo,
+                                         UIActivityTypeAirDrop];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 @end

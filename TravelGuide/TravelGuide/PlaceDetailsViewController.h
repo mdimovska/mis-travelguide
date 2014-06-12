@@ -19,12 +19,10 @@
 @property (strong, nonatomic) NSArray *placeDetailModel;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
-@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
-@property (strong, nonatomic) IBOutlet UILabel *countryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *compassImage;
+@property (strong, nonatomic) IBOutlet UIButton *imageViewFavourites;
 
 @property (weak, atomic) NSString *name;
 @property (weak, atomic) NSString *distance;

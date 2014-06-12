@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E1924DB1941E6D200588C58 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1924DA1941E6D200588C58 /* CoreLocation.framework */; };
+		4E1A9D271949021E0045852E /* launcher_icon_travel_guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1A9D261949021E0045852E /* launcher_icon_travel_guide.png */; };
 		4E1C4E35193F859500AC82B1 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C4E34193F859500AC82B1 /* CategoryTableViewCell.m */; };
 		4E1C4E56193F916500AC82B1 /* CategoryDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C4E55193F916500AC82B1 /* CategoryDetailsViewController.m */; };
 		4E1C4E5A193F9DD800AC82B1 /* PlacesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C4E59193F9DD800AC82B1 /* PlacesTableViewCell.m */; };
@@ -43,9 +44,8 @@
 		4E2ABC9A19463943005FE05D /* icon_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ABC8C19463943005FE05D /* icon_share.png */; };
 		4E2ABC9B19463943005FE05D /* icon_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ABC8D19463943005FE05D /* icon_star.png */; };
 		4E2ABC9D19463B97005FE05D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2ABC9C19463B97005FE05D /* QuartzCore.framework */; };
-		4E2ABC9F19463D47005FE05D /* icon_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ABC9E19463D47005FE05D /* icon_compass.png */; };
-		4E2ABCA219465C12005FE05D /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ABCA119465C12005FE05D /* Location.gpx */; };
 		4E2ABCA4194799AF005FE05D /* icon_white_travel_guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ABCA3194799AF005FE05D /* icon_white_travel_guide.png */; };
+		4E2ABCA61948F695005FE05D /* icon_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ABCA51948F695005FE05D /* icon_compass.png */; };
 		4E728FF61941BFF80016AD8C /* FavouritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E728FF51941BFF80016AD8C /* FavouritesTableViewController.m */; };
 		4EB1D56B1940EE8400CA80FA /* OSBlurredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5631940EE8400CA80FA /* OSBlurredView.m */; };
 		4EB1D56C1940EE8400CA80FA /* OSBlurSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1D5661940EE8400CA80FA /* OSBlurSlideMenuController.m */; };
@@ -67,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		4E1924DA1941E6D200588C58 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4E1A9D261949021E0045852E /* launcher_icon_travel_guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launcher_icon_travel_guide.png; sourceTree = "<group>"; };
 		4E1C4E33193F859500AC82B1 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
 		4E1C4E34193F859500AC82B1 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
 		4E1C4E55193F916500AC82B1 /* CategoryDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryDetailsViewController.m; sourceTree = "<group>"; };
@@ -112,10 +113,9 @@
 		4E2ABC8C19463943005FE05D /* icon_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_share.png; sourceTree = "<group>"; };
 		4E2ABC8D19463943005FE05D /* icon_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star.png; sourceTree = "<group>"; };
 		4E2ABC9C19463B97005FE05D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4E2ABC9E19463D47005FE05D /* icon_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_compass.png; sourceTree = "<group>"; };
 		4E2ABCA019465B88005FE05D /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
-		4E2ABCA119465C12005FE05D /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Location.gpx; path = TravelGuide/Location.gpx; sourceTree = "<group>"; };
 		4E2ABCA3194799AF005FE05D /* icon_white_travel_guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_white_travel_guide.png; sourceTree = "<group>"; };
+		4E2ABCA51948F695005FE05D /* icon_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_compass.png; sourceTree = "<group>"; };
 		4E728FF41941BFF80016AD8C /* FavouritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesTableViewController.h; sourceTree = "<group>"; };
 		4E728FF51941BFF80016AD8C /* FavouritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesTableViewController.m; sourceTree = "<group>"; };
 		4EB1D5621940EE8400CA80FA /* OSBlurredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSBlurredView.h; sourceTree = "<group>"; };
@@ -162,7 +162,6 @@
 		4E202840193B53230099614F = {
 			isa = PBXGroup;
 			children = (
-				4E2ABCA119465C12005FE05D /* Location.gpx */,
 				4E202852193B53230099614F /* TravelGuide */,
 				4E202874193B53230099614F /* TravelGuideTests */,
 				4E20284B193B53230099614F /* Frameworks */,
@@ -228,8 +227,9 @@
 		4E202853193B53230099614F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E1A9D261949021E0045852E /* launcher_icon_travel_guide.png */,
+				4E2ABCA51948F695005FE05D /* icon_compass.png */,
 				4E2ABCA3194799AF005FE05D /* icon_white_travel_guide.png */,
-				4E2ABC9E19463D47005FE05D /* icon_compass.png */,
 				4E2ABC8019463943005FE05D /* background1.jpg */,
 				4E2ABC8119463943005FE05D /* background2.jpg */,
 				4E2ABC8219463943005FE05D /* background3.jpg */,
@@ -364,24 +364,24 @@
 			files = (
 				4E2ABC9019463943005FE05D /* background3.jpg in Resources */,
 				4E2ABC9319463943005FE05D /* background6.jpg in Resources */,
-				4E2ABCA219465C12005FE05D /* Location.gpx in Resources */,
 				4E2ABCA4194799AF005FE05D /* icon_white_travel_guide.png in Resources */,
 				4E2ABC9619463943005FE05D /* background9.jpg in Resources */,
 				4E2ABC9519463943005FE05D /* background8.jpg in Resources */,
 				4E2ABC9119463943005FE05D /* background4.jpg in Resources */,
 				4E2ABC9219463943005FE05D /* background5.jpg in Resources */,
 				4E202863193B53230099614F /* Main_iPad.storyboard in Resources */,
-				4E2ABC9F19463D47005FE05D /* icon_compass.png in Resources */,
 				4E202868193B53230099614F /* Images.xcassets in Resources */,
 				4E2ABC8F19463943005FE05D /* background2.jpg in Resources */,
 				4E2ABC9719463943005FE05D /* background10.jpg in Resources */,
 				4E2ABC8E19463943005FE05D /* background1.jpg in Resources */,
 				4E202860193B53230099614F /* Main_iPhone.storyboard in Resources */,
 				4E2ABC9419463943005FE05D /* background7.jpg in Resources */,
+				4E1A9D271949021E0045852E /* launcher_icon_travel_guide.png in Resources */,
 				4E202857193B53230099614F /* InfoPlist.strings in Resources */,
 				4E2ABC9819463943005FE05D /* default_random_image.jpg in Resources */,
 				4E2ABC9A19463943005FE05D /* icon_share.png in Resources */,
 				4E2ABC9B19463943005FE05D /* icon_star.png in Resources */,
+				4E2ABCA61948F695005FE05D /* icon_compass.png in Resources */,
 				4E2ABC9919463943005FE05D /* icon_help.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +554,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TravelGuide/TravelGuide-Prefix.pch";
 				INFOPLIST_FILE = "TravelGuide/TravelGuide-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -568,7 +568,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TravelGuide/TravelGuide-Prefix.pch";
 				INFOPLIST_FILE = "TravelGuide/TravelGuide-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
