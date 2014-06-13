@@ -2,7 +2,7 @@
 //  PlaceDetailsViewController.h
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/4/14.
+//  Created by Milena Dimovska on 6/4/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 
@@ -10,8 +10,10 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Social/Social.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface PlaceDetailsViewController : UIViewController <CLLocationManagerDelegate>
+@interface PlaceDetailsViewController : UIViewController <CLLocationManagerDelegate, UIActionSheetDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *tipsView;
 - (IBAction)btnAddToFavouritesClick:(id)sender;
@@ -35,7 +37,9 @@
 @property (weak, atomic) NSString *likes;
 @property (weak, atomic) NSString *rating;
 @property (weak, atomic) NSString *tips;
+@property (weak, atomic) NSString *venueUrl;
 
+@property (weak, nonatomic) MKRoute *routeDetails;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) CLLocationManager *locationManager;
 //@property (strong, nonatomic) IBOutlet UIImageView *imageView;

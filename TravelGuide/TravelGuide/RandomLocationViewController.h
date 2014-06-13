@@ -2,7 +2,7 @@
 //  RandomLocationViewController.h
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/7/14.
+//  Created by Milena Dimovska on 6/7/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 

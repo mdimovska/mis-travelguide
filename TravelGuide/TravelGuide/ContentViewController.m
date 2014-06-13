@@ -1,6 +1,5 @@
 //
 //  ContentViewController.m
-//  BlurSlideMenuDemo
 //
 
 #import "ContentViewController.h"

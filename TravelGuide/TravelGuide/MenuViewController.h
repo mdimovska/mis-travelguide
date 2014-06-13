@@ -1,6 +1,5 @@
 //
 //  MenuViewController.h
-//  BlurSlideMenuDemo
 //
 
 #import <UIKit/UIKit.h>

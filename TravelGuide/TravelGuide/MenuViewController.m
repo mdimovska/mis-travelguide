@@ -1,6 +1,5 @@
 //
 //  MenuViewController.m
-//  BlurSlideMenuDemo
 //
 
 #import "MenuViewController.h"

@@ -2,7 +2,7 @@
 //  FavouritesTableViewController.m
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/6/14.
+//  Created by Milena Dimovska on 6/6/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 
@@ -155,6 +155,7 @@
         NSString *likes= result[@"likes"];
         NSString *rating= result[@"rating"];
         NSString *tips= result[@"tips"];
+        NSString *venueUrl= result[@"venueUrl"];
         
         detailViewController.placeDetailModel = [[NSArray alloc]
                                                  initWithObjects:
@@ -169,6 +170,7 @@
                                                  likes,
                                                  rating,
                                                  tips,
+                                                 venueUrl,
                                                  nil];
     }
 }

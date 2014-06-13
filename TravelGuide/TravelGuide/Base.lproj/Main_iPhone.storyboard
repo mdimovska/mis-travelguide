@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="QQo-3g-Dhv">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -147,21 +147,21 @@
                                 <rect key="frame" x="0.0" y="426" width="320" height="142"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krm-xh-Bpv">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krm-xh-Bpv">
                                         <rect key="frame" x="13" y="11" width="297" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaK-eB-qG4">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaK-eB-qG4">
                                         <rect key="frame" x="13" y="43" width="297" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ifW-Ru-fIP">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ifW-Ru-fIP">
                                         <rect key="frame" x="45" y="83" width="230" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -196,6 +196,11 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.16862745098039217" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="krm-xh-Bpv" secondAttribute="centerX" id="IhE-PG-BgM"/>
+                                    <constraint firstAttribute="centerX" secondItem="zaK-eB-qG4" secondAttribute="centerX" id="Tmo-wK-zOk"/>
+                                    <constraint firstAttribute="centerX" secondItem="ifW-Ru-fIP" secondAttribute="centerX" id="oEl-Ob-9e7"/>
+                                </constraints>
                             </view>
                             <view hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ewx-jG-n8e">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
@@ -211,21 +216,20 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.16862745098039217" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="deviceRGB"/>
                             </view>
-                            <imageView autoresizesSubviews="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_compass.png" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-jh-ife">
-                                <rect key="frame" x="229" y="337" width="100" height="100"/>
+                            <imageView autoresizesSubviews="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_compass.png" translatesAutoresizingMaskIntoConstraints="NO" id="GoU-jh-ife">
+                                <rect key="frame" x="195" y="302" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="CQ9-0V-9dP"/>
-                                    <constraint firstAttribute="width" constant="90" id="Pwb-0q-k0h"/>
+                                    <constraint firstAttribute="height" constant="120" id="CQ9-0V-9dP"/>
+                                    <constraint firstAttribute="width" constant="120" id="Pwb-0q-k0h"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="vxK-ad-iq8" secondAttribute="bottom" id="Yn1-vl-a76"/>
-                            <constraint firstAttribute="bottom" secondItem="GoU-jh-ife" secondAttribute="bottom" constant="147" id="biI-5M-udm"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GoU-jh-ife" secondAttribute="bottom" constant="141" id="yIO-iI-8Mk"/>
-                            <constraint firstAttribute="trailing" secondItem="GoU-jh-ife" secondAttribute="trailing" id="yVe-1w-OtI"/>
+                            <constraint firstAttribute="trailing" secondItem="GoU-jh-ife" secondAttribute="trailing" constant="5" id="chs-Cg-mmx"/>
+                            <constraint firstAttribute="bottom" secondItem="GoU-jh-ife" secondAttribute="bottom" constant="146" id="zm9-x6-6M4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uZm-vq-AMK"/>
@@ -260,7 +264,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <view alpha="0.90000000000000013" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-nA-6p8">
+                            <view hidden="YES" alpha="0.90000000000000013" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-nA-6p8">
                                 <rect key="frame" x="0.0" y="428" width="320" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -271,7 +275,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EH-u0-1qL">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EH-u0-1qL">
                                         <rect key="frame" x="259" y="63" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="icon_help.png">
@@ -285,7 +289,7 @@
                                 <color key="backgroundColor" red="0.16862745098039217" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.16862745100000001" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="fHV-nA-6p8" secondAttribute="bottom" constant="25" id="b0r-08-v2L"/>
                         </constraints>
@@ -293,9 +297,9 @@
                     <navigationItem key="navigationItem" id="a32-UT-NJf"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="buttonInfo" destination="9EH-u0-1qL" id="GT7-DM-AAf"/>
                         <outlet property="imageViewLocation" destination="RU3-SC-ZZ0" id="hiI-Qv-dms"/>
                         <outlet property="labelLocationName" destination="WAL-ms-KcA" id="0BB-r5-Mop"/>
+                        <outlet property="viewInfo" destination="fHV-nA-6p8" id="pub-kD-yp1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XN1-a4-zYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -436,7 +440,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_compass.png" width="512" height="512"/>
+        <image name="icon_compass.png" width="419" height="449"/>
         <image name="icon_help.png" width="64" height="64"/>
         <image name="icon_share.png" width="64" height="64"/>
         <image name="icon_star.png" width="64" height="64"/>

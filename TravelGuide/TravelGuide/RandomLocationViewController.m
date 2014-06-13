@@ -2,7 +2,7 @@
 //  RandomLocationViewController.m
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/7/14.
+//  Created by Milena Dimovska on 6/7/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 
@@ -43,7 +43,6 @@
     
     categoryIDs=[[NSArray alloc]initWithObjects:@"4d4b7104d754a06370d81259",@"4d4b7105d754a06374d81259",@"4d4b7105d754a06376d81259",@"4d4b7105d754a06377d81259",@"4d4b7105d754a06378d81259", @"4d4b7105d754a06379d81259", nil];
     
-    imageViewLocation.image = [UIImage imageNamed:@"default_random_image.jpg"];
     labelLocationName.text=@"";
   
     [self getRandomLocationFromUrl];
@@ -159,6 +158,7 @@
     NSString *likes=@"0";
     NSString *rating=@"";
     NSString *tips=@"";
+    NSString *venueUrl=@"";
     
     if( result[@"venue"][@"name"] != nil)
         name= result[@"venue"][@"name"];
@@ -184,7 +184,9 @@
         rating=  [result[@"venue"][@"rating"] stringValue];
     if(  [result[@"tips"]objectAtIndex: 0][@"text"] != nil)
         tips=  [result[@"tips"]objectAtIndex: 0][@"text"];
-    
+    if(  result[@"venue"][@"url"] != NULL)
+         venueUrl = result[@"venue"][@"url"];
+
     
     randomLocationModel = [[NSArray alloc]
                                              initWithObjects:
@@ -199,6 +201,7 @@
                                              likes,
                                              rating,
                                              tips,
+                                           venueUrl,
                                              nil];
     
     //second request to retrieve image url

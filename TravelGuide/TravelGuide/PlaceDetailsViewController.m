@@ -2,7 +2,7 @@
 //  PlaceDetailsViewController.m
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/4/14.
+//  Created by Milena Dimovska on 6/4/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 
@@ -30,11 +30,15 @@
 @synthesize rating;
 @synthesize tips;
 @synthesize tipsView;
+@synthesize venueUrl;
 
 @synthesize mapView;
+@synthesize routeDetails;
 @synthesize locationManager;
 @synthesize compassImage;
 @synthesize imageViewFavourites;
+
+NSString * text;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,8 +63,8 @@
     likes=[placeDetailModel objectAtIndex:8];
     rating=[placeDetailModel objectAtIndex:9];
      tips=[placeDetailModel objectAtIndex:10];
+    venueUrl=[placeDetailModel objectAtIndex:11];    nameLabel.text = name;
     
-    nameLabel.text = name;
     categoryLabel.text = category;
     tipsLabel.text=tips;
     
@@ -89,6 +93,48 @@
     [mapView setRegion:region];
     [mapView addAnnotation:annotation];
    
+    mapView.delegate = self;
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dictionary= [prefs dictionaryForKey:@"latitudeLongitudePrefs"];
+    
+    NSString * latitude=dictionary[@"lat"];
+    NSString * longitude=dictionary[@"lng"];
+    double l1 = [[latitude stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] doubleValue];
+    double l2 = [[longitude stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] doubleValue];
+    
+    
+    MKPlacemark *source = [[MKPlacemark   alloc]initWithCoordinate:CLLocationCoordinate2DMake(l1,l2)   addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    MKMapItem *srcMapItem = [[MKMapItem alloc]initWithPlacemark:source];
+    [srcMapItem setName:@""];
+    
+    MKPlacemark *destination = [[MKPlacemark alloc]initWithCoordinate:centerCoordinate addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    
+    MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
+    [distMapItem setName:@""];
+    
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+    [request setSource:srcMapItem];
+    [request setDestination:distMapItem];
+    [request setTransportType:MKDirectionsTransportTypeAutomobile];
+    
+    MKDirections *direction = [[MKDirections alloc]initWithRequest:request];
+    
+    [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        
+        if (error)
+        {
+            NSLog(@"Error %@", error.description);
+        }
+        else
+        {
+            NSLog(@"response = %@",response);
+            routeDetails = response.routes.lastObject;
+            [self.mapView addOverlay:routeDetails.polyline];
+            
+        }
+    }];
+
     
     locationManager=[[CLLocationManager alloc] init];
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -101,7 +147,6 @@
     }else NSLog(@"Can't startUpdatingHeading!");
     
     //read user data:
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
    NSMutableArray *favouritesArray = [prefs mutableArrayValueForKey:@"favouritesArray"];
     
     bool exists=false;
@@ -114,8 +159,42 @@
     if(exists)
         imageViewFavourites.alpha=0.2;
     //show current location on map
-   // mapView.showsUserLocation = YES;
+   mapView.showsUserLocation = YES;
+    
+   text = [NSString stringWithFormat:@"Check out this place - %@ (%@) via TravelGuide", name, country];
 
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    // If it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
+        // Try to dequeue an existing pin view first.
+        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
+        if (!pinView)
+        {
+            // If an existing pin view was not available, create one.
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
+            pinView.canShowCallout = YES;
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
+}
+
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    MKPolylineRenderer  * routeLineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:routeDetails.polyline];
+    routeLineRenderer.strokeColor = [UIColor  colorWithRed:((float) 21 / 255.0f)
+                                                     green:((float) 160 / 255.0f)
+                                                      blue:((float) 132/ 255.0f)
+                                                     alpha:0.7];
+    routeLineRenderer.lineWidth = 5;
+    return routeLineRenderer;
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,8 +202,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 /*
 #pragma mark - Navigation
@@ -176,6 +253,7 @@
         dictionary[@"likes"]= likes;
         dictionary[@"rating"]= rating;
         dictionary[@"tips"]= tips;
+        dictionary[@"venueUrl"]= venueUrl;
         
         [favouritesArray addObject: dictionary];
         
@@ -213,29 +291,122 @@
 
 - (IBAction)btnShare:(id)sender
 {
-    NSString *text = [NSString stringWithFormat:@"You can't miss %@! Check out this app to find out the best places arround you!@",name];
- //   NSURL *url = [NSURL URLWithString:@"http://roadfiresoftware.com/2014/02/how-to-add-facebook-and-twitter-sharing-to-an-ios-app/"];
-    UIImage *image = [UIImage imageNamed:@"launcher_icon_travel_guide"];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Twitter", @"Facebook", nil];
     
-    UIActivityViewController *controller =
-    [[UIActivityViewController alloc]
-     initWithActivityItems:@[text, image]
-     applicationActivities:nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     
-    controller.excludedActivityTypes = @[UIActivityTypePostToWeibo,
-                                         UIActivityTypeMessage,
-                                         UIActivityTypeMail,
-                                         UIActivityTypePrint,
-                                         UIActivityTypeCopyToPasteboard,
-                                         UIActivityTypeAssignToContact,
-                                         UIActivityTypeSaveToCameraRoll,
-                                         UIActivityTypeAddToReadingList,
-                                         UIActivityTypePostToFlickr,
-                                         UIActivityTypePostToFacebook,
-                                         UIActivityTypePostToVimeo,
-                                         UIActivityTypePostToTencentWeibo,
-                                         UIActivityTypeAirDrop];
-    
-    [self presentViewController:controller animated:YES completion:nil];
+    [actionSheet showInView:self.view];
 }
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self shareToTwitter];
+    } else if (buttonIndex == 1){
+        [self shareToFacebook];
+    }
+}
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
+    //[[actionSheet layer] setBackgroundColor:[UIColor grayColor].CGColor];
+    
+    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            button.titleLabel.textColor = [UIColor colorWithRed:(0/255.0) green:(102/255.0) blue:(85/255.0) alpha:1];
+        }
+    }];
+}
+
+- (void) shareToTwitter{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetSheet setInitialText:text];
+        [tweetSheet addImage:[UIImage imageNamed:@"Icon-76.png"]];
+        if (venueUrl != NULL)
+            [tweetSheet addURL:[NSURL URLWithString:venueUrl]];
+        
+        [tweetSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
+            NSString *output;
+            
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    output = @"Post Canceled";
+                    break;
+                case SLComposeViewControllerResultDone:
+                    output = @"Post Sucessful";
+                    break;
+                default:
+                    break;
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter Complition Message"
+                                                            message:output
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }];
+        
+        [self presentViewController:tweetSheet animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't send a tweet right now, make sure                                   your device has an internet connection and you have                                   at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+- (void) shareToFacebook{
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        [controller addImage:[UIImage imageNamed:@"Icon-76.png"]];
+        
+        if (venueUrl != NULL)
+            [controller addURL:[NSURL URLWithString:venueUrl]];
+        
+        [controller setCompletionHandler:^(SLComposeViewControllerResult result) {
+            NSString *output;
+            
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    output = @"Post Canceled";
+                    break;
+                case SLComposeViewControllerResultDone:
+                    output = @"Post Sucessful";
+                    break;
+                default:
+                    break;
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Complition Message"
+                                                            message:output
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }];
+        [controller setInitialText:text];
+        [self presentViewController:controller animated:YES completion:Nil];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't post right now, make sure                                   your device has an internet connection and you have                                   at least one Facebook account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+
 @end

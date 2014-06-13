@@ -2,7 +2,7 @@
 //  ViewController.m
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/1/14.
+//  Created by Milena Dimovska on 6/1/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 
@@ -45,9 +45,6 @@
         dictionary[@"lat"]= @"42.0000";
         dictionary[@"lng"]= @"21.4333";
         [prefs setObject:dictionary forKey:@"latitudeLongitudePrefs"];
-    
-   
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -179,8 +176,8 @@
         
         NSDate *date = [NSDate date];
         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        //show notification after 60s
-        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10];;
+        //show notification after 30s
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:30];;
         localNotification.alertBody = message;
         localNotification.soundName = UILocalNotificationDefaultSoundName;
       //   localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;

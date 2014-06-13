@@ -2,7 +2,7 @@
 //  CategoryDetailsViewController.m
 //  TravelGuide
 //
-//  Created by Goran Kopevski on 6/4/14.
+//  Created by Milena Dimovska on 6/4/14.
 //  Copyright (c) 2014 TravelGuide. All rights reserved.
 //
 
@@ -128,6 +128,7 @@
         NSString *likes=@"0";
         NSString *rating=@"";
          NSString *tips=@"";
+         NSString *venueUrl=@"";
         
         if( result[@"venue"][@"name"] != nil)
             name= result[@"venue"][@"name"];
@@ -153,6 +154,8 @@
             rating=  [result[@"venue"][@"rating"] stringValue];
         if(  [result[@"tips"]objectAtIndex: 0][@"text"] != nil)
             tips=  [result[@"tips"]objectAtIndex: 0][@"text"];
+        if(  result[@"venue"][@"url"] != NULL)
+            venueUrl = result[@"venue"][@"url"];
         
         
         detailViewController.placeDetailModel = [[NSArray alloc]
@@ -168,6 +171,7 @@
                                                  likes,
                                                  rating,
                                                  tips,
+                                                 venueUrl,
                                                  nil];
     }
 }
